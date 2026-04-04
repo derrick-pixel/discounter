@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <meta name="theme-color" content="#dc2626" />
+  <title>Discounter SG — Up to 80% Off FMCG</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f3f4f6;
+      color: #111827;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAVBAR ───────────────────────────────── */
+    .navbar {
+      background: #dc2626;
+      color: #fff;
+      padding: 0 16px;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,.2);
+    }
+    .navbar-brand {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -.3px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .navbar-sub { font-size: 11px; opacity: .85; font-weight: 400; }
+
+    /* ── CUTOFF BANNER ────────────────────────── */
+    .cutoff-banner {
+      background: #fbbf24;
+      color: #78350f;
+      text-align: center;
+      padding: 8px 16px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .cutoff-timer {
+      font-family: monospace;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /* ── MAIN WRAPPER ─────────────────────────── */
+    .wrapper {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 12px 12px 80px;
+    }
+
+    /* ── HERO ─────────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+      color: #fff;
+      border-radius: 16px;
+      padding: 20px 16px;
+      text-align: center;
+      margin-bottom: 14px;
+    }
+    .hero h1 { font-size: 28px; font-weight: 800; letter-spacing: -.5px; }
+    .hero p { font-size: 13px; opacity: .9; margin-top: 4px; }
+
+    /* ── HOW TO ORDER ─────────────────────────── */
+    .how-to-order {
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      border-left: 4px solid #dc2626;
+    }
+    .how-to-order h2 { font-size: 13px; font-weight: 700; color: #dc2626; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .5px; }
+    .how-to-order ol { padding-left: 18px; font-size: 13px; color: #374151; line-height: 1.7; }
+    .how-to-order strong { color: #111; }
+
+    /* ── DELIVERY INFO ────────────────────────── */
+    .delivery-info {
+      background: #fff;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      color: #374151;
+      line-height: 1.6;
+    }
+    .delivery-info h2 { font-size: 13px; font-weight: 700; color: #1d4ed8; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .5px; }
+
+    /* ── CATEGORY TABS ────────────────────────── */
+    .category-nav {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      margin-bottom: 14px;
+      scrollbar-width: none;
+    }
+    .category-nav::-webkit-scrollbar { display: none; }
+    .cat-btn {
+      flex-shrink: 0;
+      background: #fff;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 999px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all .15s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+    }
+    .cat-btn.active, .cat-btn:active {
+      background: #dc2626;
+      border-color: #dc2626;
+      color: #fff;
+    }
+    .cat-btn .emoji { font-size: 16px; }
+
+    /* ── SECTION LABEL ────────────────────────── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      color: #6b7280;
+      margin: 16px 0 8px;
+    }
+
+    /* ── PRODUCT GRID ─────────────────────────── */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    /* ── PRODUCT CARD ─────────────────────────── */
+    .card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,.07);
+      display: flex;
+      flex-direction: column;
+    }
+    .card-img {
+      aspect-ratio: 1;
+      background: #f9fafb;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      position: relative;
+    }
+    .discount-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: #dc2626;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 6px;
+    }
+    .card-body { padding: 10px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
+    .card-name { font-size: 12px; font-weight: 600; line-height: 1.35; color: #111827; }
+
+    /* Expiry pill */
+    .expiry {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 7px;
+      border-radius: 999px;
+      width: fit-content;
+    }
+    .expiry.critical { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+    .expiry.warning  { background: #ffedd5; color: #c2410c; border: 1px solid #fdba74; }
+    .expiry.ok       { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+
+    /* Pricing */
+    .price-row { display: flex; align-items: baseline; gap: 6px; margin-top: auto; }
+    .price-now { font-size: 16px; font-weight: 800; color: #dc2626; }
+    .price-was { font-size: 11px; color: #9ca3af; text-decoration: line-through; }
+
+    /* ── ORDER CTA ────────────────────────────── */
+    .cta-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: #fff;
+      border-top: 1px solid #e5e7eb;
+      padding: 10px 16px;
+      display: flex;
+      gap: 10px;
+      z-index: 100;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .btn-wa {
+      flex: 1;
+      background: #16a34a;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+    .btn-call {
+      background: #1d4ed8;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ── FOOTER ───────────────────────────────── */
+    .footer {
+      text-align: center;
+      font-size: 11px;
+      color: #9ca3af;
+      margin-top: 24px;
+      padding-bottom: 8px;
+    }
+
+    /* Hidden class for filter */
+    .card[data-cat].hidden { display: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <div class="navbar-brand">
+    🏷️ Discounter SG
+    <span class="navbar-sub">Up to 80% Off</span>
+  </div>
+  <div style="font-size:12px;opacity:.9">📦 Free Delivery</div>
+</header>
+
+<!-- CUTOFF BANNER -->
+<div class="cutoff-banner">
+  ⏰ Order closes in <span class="cutoff-timer" id="timer">—</span> · Delivered to your dorm this week!
+</div>
+
+<div class="wrapper">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Up to 80% OFF</h1>
+    <p>Short-dated FMCG deals · Weekly delivery to top 20 Singapore dormitories</p>
+  </div>
+
+  <!-- HOW TO ORDER -->
+  <div class="how-to-order">
+    <h2>📲 How to Order</h2>
+    <ol>
+      <li>Screenshot the products you want</li>
+      <li>WhatsApp us at <strong>+65 9847 9776</strong></li>
+      <li>Tell us your <strong>dormitory name</strong> &amp; <strong>room number</strong></li>
+      <li>We'll send you a <strong>PayNow QR</strong> with total amount</li>
+      <li>Pay &amp; we'll confirm your order ✅</li>
+    </ol>
+  </div>
+
+  <!-- DELIVERY INFO -->
+  <div class="delivery-info">
+    <h2>🚚 Delivery Info</h2>
+    Orders are batched <strong>weekly</strong>. Cut-off every <strong>Sunday 11:59 PM</strong>.
+    We deliver to the <strong>top 20 Singapore foreign worker dormitories</strong> — Tuas, Mandai, Kranji, Pioneer, Woodlands, Sembawang &amp; more.
+    Delivery is <strong>FREE</strong>.
+  </div>
+
+  <!-- CATEGORY FILTER -->
+  <div class="category-nav" id="catNav">
+    <button class="cat-btn active" onclick="filter('all', this)"><span class="emoji">🛒</span>All</button>
+    <button class="cat-btn" onclick="filter('beverages', this)"><span class="emoji">🥤</span>Drinks</button>
+    <button class="cat-btn" onclick="filter('instant_noodles', this)"><span class="emoji">🍜</span>Noodles</button>
+    <button class="cat-btn" onclick="filter('snacks', this)"><span class="emoji">🍟</span>Snacks</button>
+    <button class="cat-btn" onclick="filter('canned_goods', this)"><span class="emoji">🥫</span>Canned</button>
+    <button class="cat-btn" onclick="filter('rice_grains', this)"><span class="emoji">🍚</span>Rice</button>
+    <button class="cat-btn" onclick="filter('cooking_essentials', this)"><span class="emoji">🍳</span>Cooking</button>
+    <button class="cat-btn" onclick="filter('personal_care', this)"><span class="emoji">🧴</span>Care</button>
+    <button class="cat-btn" onclick="filter('dairy', this)"><span class="emoji">🥛</span>Dairy</button>
+  </div>
+
+  <!-- PRODUCT GRID -->
+  <div class="grid" id="productGrid">
+
+    <!-- BEVERAGES -->
+    <div class="card" data-cat="beverages">
+      <div class="card-img">🥤<span class="discount-badge">-63%</span></div>
+      <div class="card-body">
+        <p class="card-name">Coca-Cola Classic 24 × 320ml</p>
+        <span class="expiry warning">⚠ Exp Sep 2025</span>
+        <div class="price-row"><span class="price-now">S$5.90</span><span class="price-was">S$15.90</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="beverages">
+      <div class="card-img">🐂<span class="discount-badge">-64%</span></div>
+      <div class="card-body">
+        <p class="card-name">Red Bull Energy Drink 4 × 250ml</p>
+        <span class="expiry critical">🔴 Exp Aug 2025</span>
+        <div class="price-row"><span class="price-now">S$3.50</span><span class="price-was">S$9.70</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="beverages">
+      <div class="card-img">🍵<span class="discount-badge">-62%</span></div>
+      <div class="card-body">
+        <p class="card-name">Pokka Green Tea 24 × 300ml</p>
+        <span class="expiry warning">⚠ Exp Oct 2025</span>
+        <div class="price-row"><span class="price-now">S$5.50</span><span class="price-was">S$14.40</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="beverages">
+      <div class="card-img">☕<span class="discount-badge">-64%</span></div>
+      <div class="card-body">
+        <p class="card-name">Milo 3-in-1 Instant Drink 15 sachets</p>
+        <span class="expiry warning">⚠ Exp Nov 2025</span>
+        <div class="price-row"><span class="price-now">S$2.90</span><span class="price-was">S$7.95</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="beverages">
+      <div class="card-img">🍵<span class="discount-badge">-60%</span></div>
+      <div class="card-body">
+        <p class="card-name">Tata Tea Premium Leaf Tea 250g</p>
+        <span class="expiry ok">✓ Exp Dec 2025</span>
+        <div class="price-row"><span class="price-now">S$2.10</span><span class="price-was">S$5.30</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="beverages">
+      <div class="card-img">⚡<span class="discount-badge">-63%</span></div>
+      <div class="card-body">
+        <p class="card-name">100Plus Isotonic Drink 24 × 325ml</p>
+        <span class="expiry warning">⚠ Exp Sep 2025</span>
+        <div class="price-row"><span class="price-now">S$5.50</span><span class="price-was">S$14.90</span></div>
+      </div>
+    </div>
+
+    <!-- INSTANT NOODLES -->
+    <div class="card" data-cat="instant_noodles">
+      <div class="card-img">🍜<span class="discount-badge">-60%</span></div>
+      <div class="card-body">
+        <p class="card-name">Indomie Mi Goreng Fried Noodles 5 × 80g</p>
+        <span class="expiry critical">🔴 Exp Jul 2025</span>
+        <div class="price-row"><span class="price-now">S$0.90</span><span class="price-was">S$2.25</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="instant_noodles">
+      <div class="card-img">🍜<span class="discount-badge">-61%</span></div>
+      <div class="card-body">
+        <p class="card-name">Maggi 2-Min Noodles Curry 5 × 79g</p>
+        <span class="expiry critical">🔴 Exp Aug 2025</span>
+        <div class="price-row"><span class="price-now">S$1.00</span><span class="price-was">S$2.57</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="instant_noodles">
+      <div class="card-img">🍜<span class="discount-badge">-61%</span></div>
+      <div class="card-body">
+        <p class="card-name">Maggi 2-Min Noodles Chicken 5 × 77g</p>
+        <span class="expiry critical">🔴 Exp Jul 2025</span>
+        <div class="price-row"><span class="price-now">S$1.00</span><span class="price-was">S$2.57</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="instant_noodles">
+      <div class="card-img">🍜<span class="discount-badge">-59%</span></div>
+      <div class="card-body">
+        <p class="card-name">Nissin Cup Noodles Seafood 6 × 75g</p>
+        <span class="expiry critical">🔴 Exp Sep 2025</span>
+        <div class="price-row"><span class="price-now">S$2.80</span><span class="price-was">S$6.90</span></div>
+      </div>
+    </div>
+
+    <!-- CANNED GOODS -->
+    <div class="card" data-cat="canned_goods">
+      <div class="card-img">🥫<span class="discount-badge">-60%</span></div>
+      <div class="card-body">
+        <p class="card-name">Ayam Brand Sardines in Tomato Sauce 215g</p>
+        <span class="expiry ok">✓ Exp Dec 2025</span>
+        <div class="price-row"><span class="price-now">S$0.85</span><span class="price-was">S$2.15</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="canned_goods">
+      <div class="card-img">🥫<span class="discount-badge">-60%</span></div>
+      <div class="card-body">
+        <p class="card-name">Ayam Brand Tuna Chunks in Water 185g</p>
+        <span class="expiry ok">✓ Exp Nov 2025</span>
+        <div class="price-row"><span class="price-now">S$0.95</span><span class="price-was">S$2.40</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="canned_goods">
+      <div class="card-img">🥫<span class="discount-badge">-59%</span></div>
+      <div class="card-body">
+        <p class="card-name">Ligo Sardines in Corn Oil 155g</p>
+        <span class="expiry warning">⚠ Exp Oct 2025</span>
+        <div class="price-row"><span class="price-now">S$0.65</span><span class="price-was">S$1.60</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="canned_goods">
+      <div class="card-img">🥫<span class="discount-badge">-60%</span></div>
+      <div class="card-body">
+        <p class="card-name">FairPrice Baked Beans in Tomato Sauce 420g</p>
+        <span class="expiry ok">✓ Exp Jan 2026</span>
+        <div class="price-row"><span class="price-now">S$0.50</span><span class="price-was">S$1.25</span></div>
+      </div>
+    </div>
+
+    <!-- RICE & GRAINS -->
+    <div class="card" data-cat="rice_grains">
+      <div class="card-img">🍚<span class="discount-badge">-60%</span></div>
+      <div class="card-body">
+        <p class="card-name">Royal Umbrella Thai Jasmine Rice 5kg</p>
+        <span class="expiry ok">✓ Exp Dec 2025</span>
+        <div class="price-row"><span class="price-now">S$4.50</span><span class="price-was">S$11.25</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="rice_grains">
+      <div class="card-img">🍚<span class="discount-badge">-61%</span></div>
+      <div class="card-body">
+        <p class="card-name">India Gate Basmati Rice Classic 2kg</p>
+        <span class="expiry ok">✓ Exp Nov 2025</span>
+        <div class="price-row"><span class="price-now">S$3.50</span><span class="price-was">S$8.95</span></div>
+      </div>
+    </div>
+
+    <!-- COOKING ESSENTIALS -->
+    <div class="card" data-cat="cooking_essentials">
+      <div class="card-img">🍳<span class="discount-badge">-61%</span></div>
+      <div class="card-body">
+        <p class="card-name">Knife Brand Cooking Oil 2L</p>
+        <span class="expiry warning">⚠ Exp Oct 2025</span>
+        <div class="price-row"><span class="price-now">S$2.10</span><span class="price-was">S$5.40</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="cooking_essentials">
+      <div class="card-img">🍶<span class="discount-badge">-60%</span></div>
+      <div class="card-body">
+        <p class="card-name">Maggi Oyster Sauce 510g</p>
+        <span class="expiry ok">✓ Exp Dec 2025</span>
+        <div class="price-row"><span class="price-now">S$1.25</span><span class="price-was">S$3.15</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="cooking_essentials">
+      <div class="card-img">🧂<span class="discount-badge">-60%</span></div>
+      <div class="card-body">
+        <p class="card-name">Knorr Chicken Stock Cubes 60g (6 cubes)</p>
+        <span class="expiry ok">✓ Exp Nov 2025</span>
+        <div class="price-row"><span class="price-now">S$0.85</span><span class="price-was">S$2.10</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="cooking_essentials">
+      <div class="card-img">🌶️<span class="discount-badge">-61%</span></div>
+      <div class="card-body">
+        <p class="card-name">FairPrice Instant Curry Powder 250g</p>
+        <span class="expiry warning">⚠ Exp Sep 2025</span>
+        <div class="price-row"><span class="price-now">S$1.15</span><span class="price-was">S$2.95</span></div>
+      </div>
+    </div>
+
+    <!-- PERSONAL CARE -->
+    <div class="card" data-cat="personal_care">
+      <div class="card-img">🧴<span class="discount-badge">-60%</span></div>
+      <div class="card-body">
+        <p class="card-name">Lifebuoy Antibacterial Body Wash 900ml</p>
+        <span class="expiry critical">🔴 Exp Aug 2025</span>
+        <div class="price-row"><span class="price-now">S$2.60</span><span class="price-was">S$6.45</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="personal_care">
+      <div class="card-img">🧴<span class="discount-badge">-60%</span></div>
+      <div class="card-body">
+        <p class="card-name">Dove Deeply Nourishing Body Wash 1L</p>
+        <span class="expiry critical">🔴 Exp Jul 2025</span>
+        <div class="price-row"><span class="price-now">S$3.40</span><span class="price-was">S$8.50</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="personal_care">
+      <div class="card-img">🚿<span class="discount-badge">-60%</span></div>
+      <div class="card-body">
+        <p class="card-name">Sunsilk Smooth & Manageable Shampoo 650ml</p>
+        <span class="expiry warning">⚠ Exp Sep 2025</span>
+        <div class="price-row"><span class="price-now">S$2.75</span><span class="price-was">S$6.90</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="personal_care">
+      <div class="card-img">🚿<span class="discount-badge">-60%</span></div>
+      <div class="card-body">
+        <p class="card-name">Head & Shoulders Anti-Dandruff Shampoo 650ml</p>
+        <span class="expiry critical">🔴 Exp Aug 2025</span>
+        <div class="price-row"><span class="price-now">S$4.80</span><span class="price-was">S$11.90</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="personal_care">
+      <div class="card-img">✨<span class="discount-badge">-60%</span></div>
+      <div class="card-body">
+        <p class="card-name">Glow & Lovely Advanced Multivitamin Face Cream 50g</p>
+        <span class="expiry critical">🔴 Exp Jul 2025</span>
+        <div class="price-row"><span class="price-now">S$1.80</span><span class="price-was">S$4.50</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="personal_care">
+      <div class="card-img">🧴<span class="discount-badge">-60%</span></div>
+      <div class="card-body">
+        <p class="card-name">Vaseline Intensive Care Body Lotion 400ml</p>
+        <span class="expiry warning">⚠ Exp Oct 2025</span>
+        <div class="price-row"><span class="price-now">S$3.15</span><span class="price-was">S$7.90</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="personal_care">
+      <div class="card-img">🦷<span class="discount-badge">-60%</span></div>
+      <div class="card-body">
+        <p class="card-name">Colgate Anticavity Toothpaste 225g</p>
+        <span class="expiry ok">✓ Exp Jan 2026</span>
+        <div class="price-row"><span class="price-now">S$1.65</span><span class="price-was">S$4.15</span></div>
+      </div>
+    </div>
+
+    <!-- SNACKS -->
+    <div class="card" data-cat="snacks">
+      <div class="card-img">🍟<span class="discount-badge">-61%</span></div>
+      <div class="card-body">
+        <p class="card-name">Lay's Classic Potato Chips 170g</p>
+        <span class="expiry critical">🔴 Exp Aug 2025</span>
+        <div class="price-row"><span class="price-now">S$2.10</span><span class="price-was">S$5.35</span></div>
+      </div>
+    </div>
+
+    <div class="card" data-cat="snacks">
+      <div class="card-img">🍪<span class="discount-badge">-60%</span></div>
+      <div class="card-body">
+        <p class="card-name">Britannia Good Day Butter Cookies 216g</p>
+        <span class="expiry warning">⚠ Exp Oct 2025</span>
+        <div class="price-row"><span class="price-now">S$1.40</span><span class="price-was">S$3.50</span></div>
+      </div>
+    </div>
+
+    <!-- DAIRY -->
+    <div class="card" data-cat="dairy">
+      <div class="card-img">🥛<span class="discount-badge">-61%</span></div>
+      <div class="card-body">
+        <p class="card-name">Dutch Lady Full Cream UHT Milk 1L</p>
+        <span class="expiry warning">⚠ Exp Sep 2025</span>
+        <div class="price-row"><span class="price-now">S$1.05</span><span class="price-was">S$2.70</span></div>
+      </div>
+    </div>
+
+  </div><!-- /grid -->
+
+  <!-- EXPIRY LEGEND -->
+  <div style="margin-top:20px;background:#fff;border-radius:12px;padding:12px 14px;font-size:11px;color:#6b7280;">
+    <strong style="display:block;margin-bottom:6px;color:#111;">Expiry Guide</strong>
+    <span class="expiry critical" style="margin-right:8px;">🔴 &lt; 4 months</span>
+    <span class="expiry warning" style="margin-right:8px;">⚠ 4–6 months</span>
+    <span class="expiry ok">✓ 6–9 months</span>
+    <p style="margin-top:8px;line-height:1.5;">All products are safe to consume within their expiry date. Buy what you can use within the shelf life shown.</p>
+  </div>
+
+  <div class="footer">
+    © 2025 Discounter SG · WhatsApp +65 9847 9776<br/>
+    Weekly delivery to Singapore foreign worker dormitories
+  </div>
+
+</div><!-- /wrapper -->
+
+<!-- STICKY CTA BAR -->
+<div class="cta-bar">
+  <a class="btn-wa" href="https://wa.me/6598479776?text=Hi%2C%20I%20want%20to%20order%20from%20Discounter%20SG!">
+    💬 WhatsApp to Order
+  </a>
+  <a class="btn-call" href="tel:+6598479776">📞</a>
+</div>
+
+<script>
+  // ── Countdown timer ──────────────────────────
+  function getNextSundayMidnight() {
+    const now = new Date();
+    const day = now.getDay(); // 0=Sun
+    const daysUntilSun = day === 0 ? 7 : 7 - day;
+    const sun = new Date(now);
+    sun.setDate(now.getDate() + daysUntilSun);
+    sun.setHours(23, 59, 59, 0);
+    return sun;
+  }
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function tick() {
+    const now = new Date();
+    const cutoff = getNextSundayMidnight();
+    const diff = cutoff - now;
+    if (diff <= 0) { document.getElementById('timer').textContent = 'CLOSED'; return; }
+    const d = Math.floor(diff / 86400000);
+    const h = Math.floor((diff % 86400000) / 3600000);
+    const m = Math.floor((diff % 3600000) / 60000);
+    const s = Math.floor((diff % 60000) / 1000);
+    document.getElementById('timer').textContent = d + 'd ' + pad(h) + ':' + pad(m) + ':' + pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // ── Category filter ──────────────────────────
+  function filter(cat, btn) {
+    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.card[data-cat]').forEach(card => {
+      card.classList.toggle('hidden', cat !== 'all' && card.dataset.cat !== cat);
+    });
+  }
+</script>
+
+</body>
+</html>
