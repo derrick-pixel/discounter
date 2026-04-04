@@ -22,8 +22,8 @@
     .navbar {
       background: #dc2626;
       color: #fff;
-      padding: 0 16px;
-      height: 56px;
+      padding: 0 24px;
+      height: 60px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -32,73 +32,109 @@
       z-index: 100;
       box-shadow: 0 2px 8px rgba(0,0,0,.2);
     }
+    .navbar-inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
     .navbar-brand {
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 800;
       letter-spacing: -.3px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
     }
-    .navbar-sub { font-size: 11px; opacity: .85; font-weight: 400; }
+    .navbar-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 13px;
+      opacity: .95;
+      font-weight: 500;
+    }
+    .navbar-right a {
+      color: #fff;
+      text-decoration: none;
+      background: rgba(255,255,255,.2);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 13px;
+      transition: background .15s;
+    }
+    .navbar-right a:hover { background: rgba(255,255,255,.35); }
 
     /* ── CUTOFF BANNER ────────────────────────── */
     .cutoff-banner {
       background: #fbbf24;
       color: #78350f;
       text-align: center;
-      padding: 8px 16px;
-      font-size: 12px;
+      padding: 9px 16px;
+      font-size: 13px;
       font-weight: 600;
     }
     .cutoff-timer {
       font-family: monospace;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
     }
 
     /* ── MAIN WRAPPER ─────────────────────────── */
     .wrapper {
-      max-width: 480px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 12px 12px 80px;
+      padding: 20px 20px 100px;
     }
 
     /* ── HERO ─────────────────────────────────── */
     .hero {
       background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
       color: #fff;
-      border-radius: 16px;
-      padding: 20px 16px;
+      border-radius: 20px;
+      padding: 36px 24px;
       text-align: center;
-      margin-bottom: 14px;
+      margin-bottom: 20px;
     }
-    .hero h1 { font-size: 28px; font-weight: 800; letter-spacing: -.5px; }
-    .hero p { font-size: 13px; opacity: .9; margin-top: 4px; }
+    .hero h1 { font-size: 42px; font-weight: 800; letter-spacing: -1px; }
+    .hero p { font-size: 15px; opacity: .9; margin-top: 6px; }
+
+    /* ── INFO ROW (side by side on desktop) ───── */
+    .info-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    @media (min-width: 640px) {
+      .info-row { grid-template-columns: 1fr 1fr; }
+    }
 
     /* ── HOW TO ORDER ─────────────────────────── */
     .how-to-order {
       background: #fff;
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin-bottom: 14px;
+      border-radius: 14px;
+      padding: 18px 20px;
       border-left: 4px solid #dc2626;
     }
-    .how-to-order h2 { font-size: 13px; font-weight: 700; color: #dc2626; margin-bottom: 8px; text-transform: uppercase; letter-spacing: .5px; }
-    .how-to-order ol { padding-left: 18px; font-size: 13px; color: #374151; line-height: 1.7; }
+    .how-to-order h2 { font-size: 12px; font-weight: 700; color: #dc2626; margin-bottom: 10px; text-transform: uppercase; letter-spacing: .6px; }
+    .how-to-order ol { padding-left: 18px; font-size: 14px; color: #374151; line-height: 1.8; }
     .how-to-order strong { color: #111; }
 
     /* ── DELIVERY INFO ────────────────────────── */
     .delivery-info {
       background: #fff;
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin-bottom: 14px;
-      font-size: 13px;
+      border-radius: 14px;
+      padding: 18px 20px;
+      font-size: 14px;
       color: #374151;
-      line-height: 1.6;
+      line-height: 1.7;
+      border-left: 4px solid #1d4ed8;
     }
-    .delivery-info h2 { font-size: 13px; font-weight: 700; color: #1d4ed8; margin-bottom: 6px; text-transform: uppercase; letter-spacing: .5px; }
+    .delivery-info h2 { font-size: 12px; font-weight: 700; color: #1d4ed8; margin-bottom: 10px; text-transform: uppercase; letter-spacing: .6px; }
 
     /* ── CATEGORY TABS ────────────────────────── */
     .category-nav {
@@ -106,8 +142,9 @@
       gap: 8px;
       overflow-x: auto;
       padding-bottom: 4px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
       scrollbar-width: none;
+      flex-wrap: wrap;
     }
     .category-nav::-webkit-scrollbar { display: none; }
     .cat-btn {
@@ -115,41 +152,33 @@
       background: #fff;
       border: 1.5px solid #e5e7eb;
       border-radius: 999px;
-      padding: 5px 12px;
-      font-size: 12px;
+      padding: 6px 14px;
+      font-size: 13px;
       font-weight: 600;
       color: #374151;
       cursor: pointer;
       white-space: nowrap;
       transition: all .15s;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 1px;
+      gap: 5px;
     }
-    .cat-btn.active, .cat-btn:active {
+    .cat-btn.active, .cat-btn:hover {
       background: #dc2626;
       border-color: #dc2626;
       color: #fff;
     }
-    .cat-btn .emoji { font-size: 16px; }
-
-    /* ── SECTION LABEL ────────────────────────── */
-    .section-label {
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: .8px;
-      color: #6b7280;
-      margin: 16px 0 8px;
-    }
+    .cat-btn .emoji { font-size: 15px; }
 
     /* ── PRODUCT GRID ─────────────────────────── */
     .grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
     }
+    @media (min-width: 540px)  { .grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 900px)  { .grid { grid-template-columns: repeat(4, 1fr); } }
+    @media (min-width: 1100px) { .grid { grid-template-columns: repeat(5, 1fr); } }
 
     /* ── PRODUCT CARD ─────────────────────────── */
     .card {
@@ -159,6 +188,11 @@
       box-shadow: 0 1px 4px rgba(0,0,0,.07);
       display: flex;
       flex-direction: column;
+      transition: box-shadow .15s, transform .15s;
+    }
+    .card:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,.1);
+      transform: translateY(-2px);
     }
     .card-img {
       aspect-ratio: 1;
@@ -166,7 +200,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 48px;
+      font-size: 52px;
       position: relative;
     }
     .discount-badge {
@@ -177,20 +211,20 @@
       color: #fff;
       font-size: 11px;
       font-weight: 700;
-      padding: 2px 7px;
+      padding: 3px 8px;
       border-radius: 6px;
     }
-    .card-body { padding: 10px; flex: 1; display: flex; flex-direction: column; gap: 6px; }
-    .card-name { font-size: 12px; font-weight: 600; line-height: 1.35; color: #111827; }
+    .card-body { padding: 12px; flex: 1; display: flex; flex-direction: column; gap: 7px; }
+    .card-name { font-size: 13px; font-weight: 600; line-height: 1.35; color: #111827; }
 
     /* Expiry pill */
     .expiry {
       display: inline-flex;
       align-items: center;
       gap: 3px;
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 600;
-      padding: 2px 7px;
+      padding: 3px 8px;
       border-radius: 999px;
       width: fit-content;
     }
@@ -199,11 +233,11 @@
     .expiry.ok       { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
 
     /* Pricing */
-    .price-row { display: flex; align-items: baseline; gap: 6px; margin-top: auto; }
-    .price-now { font-size: 16px; font-weight: 800; color: #dc2626; }
-    .price-was { font-size: 11px; color: #9ca3af; text-decoration: line-through; }
+    .price-row { display: flex; align-items: baseline; gap: 8px; margin-top: auto; }
+    .price-now { font-size: 18px; font-weight: 800; color: #dc2626; }
+    .price-was { font-size: 12px; color: #9ca3af; text-decoration: line-through; }
 
-    /* ── ORDER CTA ────────────────────────────── */
+    /* ── STICKY CTA — mobile only ─────────────── */
     .cta-bar {
       position: fixed;
       bottom: 0;
@@ -215,8 +249,6 @@
       display: flex;
       gap: 10px;
       z-index: 100;
-      max-width: 480px;
-      margin: 0 auto;
     }
     .btn-wa {
       flex: 1;
@@ -225,7 +257,7 @@
       border: none;
       border-radius: 12px;
       padding: 14px;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
       text-decoration: none;
@@ -241,7 +273,7 @@
       border: none;
       border-radius: 12px;
       padding: 14px 18px;
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 700;
       cursor: pointer;
       text-decoration: none;
@@ -249,14 +281,48 @@
       align-items: center;
       justify-content: center;
     }
+    /* On desktop, show inline CTA in footer instead */
+    @media (min-width: 768px) {
+      .cta-bar { display: none; }
+      .wrapper { padding-bottom: 40px; }
+    }
+
+    /* ── DESKTOP CTA SECTION ──────────────────── */
+    .desktop-cta {
+      display: none;
+      margin-top: 32px;
+      background: #fff;
+      border-radius: 16px;
+      padding: 28px 32px;
+      text-align: center;
+    }
+    @media (min-width: 768px) { .desktop-cta { display: block; } }
+    .desktop-cta h2 { font-size: 22px; font-weight: 800; margin-bottom: 6px; }
+    .desktop-cta p { color: #6b7280; font-size: 14px; margin-bottom: 20px; }
+    .desktop-cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .desktop-cta-btns a {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: opacity .15s;
+    }
+    .desktop-cta-btns a:hover { opacity: .88; }
+    .cta-wa { background: #16a34a; color: #fff; }
+    .cta-ph { background: #1d4ed8; color: #fff; }
 
     /* ── FOOTER ───────────────────────────────── */
     .footer {
       text-align: center;
-      font-size: 11px;
+      font-size: 12px;
       color: #9ca3af;
-      margin-top: 24px;
+      margin-top: 28px;
       padding-bottom: 8px;
+      line-height: 1.8;
     }
 
     /* Hidden class for filter */
@@ -267,11 +333,13 @@
 
 <!-- NAVBAR -->
 <header class="navbar">
-  <div class="navbar-brand">
-    🏷️ Discounter SG
-    <span class="navbar-sub">Up to 80% Off</span>
+  <div class="navbar-inner">
+    <div class="navbar-brand">🏷️ Discounter SG</div>
+    <div class="navbar-right">
+      <span>📦 Free Delivery to Dorms</span>
+      <a href="https://wa.me/6598479776?text=Hi%2C%20I%20want%20to%20order%20from%20Discounter%20SG!">💬 WhatsApp Us</a>
+    </div>
   </div>
-  <div style="font-size:12px;opacity:.9">📦 Free Delivery</div>
 </header>
 
 <!-- CUTOFF BANNER -->
@@ -287,37 +355,37 @@
     <p>Short-dated FMCG deals · Weekly delivery to top 20 Singapore dormitories</p>
   </div>
 
-  <!-- HOW TO ORDER -->
-  <div class="how-to-order">
-    <h2>📲 How to Order</h2>
-    <ol>
-      <li>Screenshot the products you want</li>
-      <li>WhatsApp us at <strong>+65 9847 9776</strong></li>
-      <li>Tell us your <strong>dormitory name</strong> &amp; <strong>room number</strong></li>
-      <li>We'll send you a <strong>PayNow QR</strong> with total amount</li>
-      <li>Pay &amp; we'll confirm your order ✅</li>
-    </ol>
-  </div>
-
-  <!-- DELIVERY INFO -->
-  <div class="delivery-info">
-    <h2>🚚 Delivery Info</h2>
-    Orders are batched <strong>weekly</strong>. Cut-off every <strong>Sunday 11:59 PM</strong>.
-    We deliver to the <strong>top 20 Singapore foreign worker dormitories</strong> — Tuas, Mandai, Kranji, Pioneer, Woodlands, Sembawang &amp; more.
-    Delivery is <strong>FREE</strong>.
+  <!-- INFO ROW -->
+  <div class="info-row">
+    <div class="how-to-order">
+      <h2>📲 How to Order</h2>
+      <ol>
+        <li>Screenshot the products you want</li>
+        <li>WhatsApp us at <strong>+65 9847 9776</strong></li>
+        <li>Tell us your <strong>dormitory name</strong> &amp; <strong>room number</strong></li>
+        <li>We'll send you a <strong>PayNow QR</strong> with total amount</li>
+        <li>Pay &amp; we'll confirm your order ✅</li>
+      </ol>
+    </div>
+    <div class="delivery-info">
+      <h2>🚚 Delivery Info</h2>
+      Orders are batched <strong>weekly</strong>. Cut-off every <strong>Sunday 11:59 PM</strong>.
+      We deliver to the <strong>top 20 Singapore foreign worker dormitories</strong> — Tuas, Mandai, Kranji, Pioneer, Woodlands, Sembawang &amp; more.
+      Delivery is <strong>FREE</strong>.
+    </div>
   </div>
 
   <!-- CATEGORY FILTER -->
   <div class="category-nav" id="catNav">
-    <button class="cat-btn active" onclick="filter('all', this)"><span class="emoji">🛒</span>All</button>
-    <button class="cat-btn" onclick="filter('beverages', this)"><span class="emoji">🥤</span>Drinks</button>
-    <button class="cat-btn" onclick="filter('instant_noodles', this)"><span class="emoji">🍜</span>Noodles</button>
-    <button class="cat-btn" onclick="filter('snacks', this)"><span class="emoji">🍟</span>Snacks</button>
-    <button class="cat-btn" onclick="filter('canned_goods', this)"><span class="emoji">🥫</span>Canned</button>
-    <button class="cat-btn" onclick="filter('rice_grains', this)"><span class="emoji">🍚</span>Rice</button>
-    <button class="cat-btn" onclick="filter('cooking_essentials', this)"><span class="emoji">🍳</span>Cooking</button>
-    <button class="cat-btn" onclick="filter('personal_care', this)"><span class="emoji">🧴</span>Care</button>
-    <button class="cat-btn" onclick="filter('dairy', this)"><span class="emoji">🥛</span>Dairy</button>
+    <button class="cat-btn active" onclick="filter('all', this)"><span class="emoji">🛒</span> All (30)</button>
+    <button class="cat-btn" onclick="filter('beverages', this)"><span class="emoji">🥤</span> Drinks</button>
+    <button class="cat-btn" onclick="filter('instant_noodles', this)"><span class="emoji">🍜</span> Noodles</button>
+    <button class="cat-btn" onclick="filter('snacks', this)"><span class="emoji">🍟</span> Snacks</button>
+    <button class="cat-btn" onclick="filter('canned_goods', this)"><span class="emoji">🥫</span> Canned</button>
+    <button class="cat-btn" onclick="filter('rice_grains', this)"><span class="emoji">🍚</span> Rice</button>
+    <button class="cat-btn" onclick="filter('cooking_essentials', this)"><span class="emoji">🍳</span> Cooking</button>
+    <button class="cat-btn" onclick="filter('personal_care', this)"><span class="emoji">🧴</span> Personal Care</button>
+    <button class="cat-btn" onclick="filter('dairy', this)"><span class="emoji">🥛</span> Dairy</button>
   </div>
 
   <!-- PRODUCT GRID -->
@@ -612,9 +680,23 @@
     <p style="margin-top:8px;line-height:1.5;">All products are safe to consume within their expiry date. Buy what you can use within the shelf life shown.</p>
   </div>
 
+  <!-- DESKTOP CTA -->
+  <div class="desktop-cta">
+    <h2>Ready to order?</h2>
+    <p>WhatsApp us your item list with your dormitory name and room number. We'll send a PayNow QR to complete your order.</p>
+    <div class="desktop-cta-btns">
+      <a class="cta-wa" href="https://wa.me/6598479776?text=Hi%2C%20I%20want%20to%20order%20from%20Discounter%20SG!">
+        💬 WhatsApp +65 9847 9776
+      </a>
+      <a class="cta-ph" href="tel:+6598479776">
+        📞 Call Us
+      </a>
+    </div>
+  </div>
+
   <div class="footer">
-    © 2025 Discounter SG · WhatsApp +65 9847 9776<br/>
-    Weekly delivery to Singapore foreign worker dormitories
+    © 2025 Discounter SG &nbsp;·&nbsp; WhatsApp <strong>+65 9847 9776</strong><br/>
+    Weekly delivery to Singapore foreign worker dormitories &nbsp;·&nbsp; Free delivery
   </div>
 
 </div><!-- /wrapper -->
