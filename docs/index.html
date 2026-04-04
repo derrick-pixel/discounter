@@ -706,7 +706,7 @@
   <!-- HERO -->
   <div class="hero">
     <h1>Up to 80% OFF</h1>
-    <p>Elitez exclusive deals for our workforce community · Weekly delivery to top 20 Singapore dormitories</p>
+    <p>Elitez exclusive deals for our workforce community · Free delivery on orders S$40+ to top 20 dormitories</p>
   </div>
 
   <!-- INFO ROW -->
@@ -725,7 +725,7 @@
       <h2>🚚 Delivery Info</h2>
       Orders are batched <strong>weekly</strong>. Cut-off every <strong>Sunday 11:59 PM</strong>.
       We deliver to the <strong>top 20 Singapore foreign worker dormitories</strong> — Tuas, Mandai, Kranji, Pioneer, Woodlands, Sembawang &amp; more.
-      Delivery is <strong>FREE</strong>.
+      Minimum order <strong>S$40</strong> for <strong>FREE delivery</strong>. Orders below S$40 incur a S$15 delivery fee.
     </div>
   </div>
 
@@ -1319,7 +1319,7 @@
 
   <div class="footer">
     © 2025 Elitez Group &nbsp;·&nbsp; WhatsApp <strong>+65 8363 8499</strong><br/>
-    Empowering Singapore's workforce community · Weekly delivery to dormitories · Free delivery
+    Empowering Singapore's workforce community · Free delivery on orders S$40+ · S$15 below
   </div>
 
 </div><!-- /wrapper -->
@@ -1422,8 +1422,19 @@
     renderCartItems();
   }
 
+  const FREE_DELIVERY_MIN = 40;
+  const DELIVERY_FEE = 15;
+
   function cartTotal() {
     return cart.reduce((s, i) => s + i.price * i.qty, 0);
+  }
+
+  function deliveryFee() {
+    return cartTotal() >= FREE_DELIVERY_MIN ? 0 : DELIVERY_FEE;
+  }
+
+  function orderTotal() {
+    return cartTotal() + deliveryFee();
   }
 
   function renderCartItems() {
@@ -1437,7 +1448,23 @@
     }
     document.getElementById('cartCheckoutBtn').style.display = 'block';
     document.getElementById('cartTotalRow').style.display = 'flex';
-    document.getElementById('cartTotalAmt').textContent = 'S$' + cartTotal().toFixed(2);
+    const subtotal = cartTotal();
+    const fee = deliveryFee();
+    const remaining = Math.max(0, FREE_DELIVERY_MIN - subtotal);
+    const feeEl = document.getElementById('cartDeliveryRow');
+    const progEl = document.getElementById('cartFreeDeliveryBar');
+    if (feeEl) {
+      feeEl.innerHTML = fee === 0
+        ? '<span style="color:#6b7280;font-size:0.85rem;">Delivery</span><span style="color:#16a34a;font-weight:700;font-size:0.9rem;">FREE ✓</span>'
+        : '<span style="color:#6b7280;font-size:0.85rem;">Delivery</span><span style="color:#374151;font-weight:700;font-size:0.9rem;">S$' + fee.toFixed(2) + '</span>';
+    }
+    if (progEl) {
+      const pct = Math.min(100, (subtotal / FREE_DELIVERY_MIN) * 100);
+      progEl.style.display = fee > 0 ? 'block' : 'none';
+      progEl.querySelector('.prog-bar').style.width = pct + '%';
+      progEl.querySelector('.prog-msg').textContent = 'Add S$' + remaining.toFixed(2) + ' more for free delivery';
+    }
+    document.getElementById('cartTotalAmt').textContent = 'S$' + orderTotal().toFixed(2);
     container.innerHTML = cart.map(item => `
       <div class="cart-item">
         ${item.img ? `<img src="${item.img}" alt="${item.name}" style="width:52px;height:52px;object-fit:contain;border-radius:8px;border:1px solid #f3f4f6;flex-shrink:0;background:#fafafa;" loading="lazy">` : ''}
@@ -1539,7 +1566,9 @@
     if (!/^\d{6}$/.test(postal)) { alert('Please enter a valid 6-digit postal code'); return; }
     if (cart.length === 0) { alert('Your cart is empty'); return; }
 
-    const total = cartTotal();
+    const subtotalAmt = cartTotal();
+    const total = orderTotal();
+    const fee = deliveryFee();
     const payRef = buildPaymentRef(name, postal);
     const qrString = buildPayNowQRString('83638499', total, payRef, 'Elitez Deals');
     const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=280x280&ecc=M&data=' + encodeURIComponent(qrString);
@@ -1555,7 +1584,8 @@
 
     // Build WhatsApp order summary
     const itemList = cart.map(i => `• ${i.name} ×${i.qty} = S$${(i.price*i.qty).toFixed(2)}`).join('\n');
-    const waMsg = `Hi Elitez Deals! Here's my order:\n\n${itemList}\n\nTotal: S$${total.toFixed(2)}\nPayRef: ${payRef}\nPhone: ${phone}\n\nI've completed PayNow payment.`;
+    const deliveryLine = fee === 0 ? 'Delivery: FREE' : `Delivery: S$${fee.toFixed(2)}`;
+    const waMsg = `Hi Elitez Deals! Here's my order:\n\n${itemList}\n\nSubtotal: S$${subtotalAmt.toFixed(2)}\n${deliveryLine}\nTotal: S$${total.toFixed(2)}\nPayRef: ${payRef}\nPhone: ${phone}\n\nI've completed PayNow payment.`;
     document.getElementById('confirmWaBtn').href = 'https://wa.me/6583638499?text=' + encodeURIComponent(waMsg);
 
     // Render order thumbnail strip in QR screen
@@ -1619,9 +1649,18 @@
     <button onclick="closeCart()" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:#6b7280;">✕</button>
   </div>
   <div id="cartItems" style="flex:1;overflow-y:auto;padding:12px 16px;"></div>
-  <div id="cartTotalRow" style="display:none;padding:12px 20px;border-top:1px solid #f3f4f6;justify-content:space-between;align-items:center;">
-    <span style="font-weight:600;">Total</span>
-    <span id="cartTotalAmt" style="font-size:1.2rem;font-weight:700;color:#fd7d00;"></span>
+  <div id="cartTotalRow" style="display:none;padding:10px 20px 0;border-top:1px solid #f3f4f6;">
+    <div id="cartFreeDeliveryBar" style="display:none;margin-bottom:8px;">
+      <div style="background:#f3f4f6;border-radius:999px;height:6px;overflow:hidden;margin-bottom:4px;">
+        <div class="prog-bar" style="background:#fd7d00;height:100%;border-radius:999px;width:0%;transition:width .3s;"></div>
+      </div>
+      <p class="prog-msg" style="font-size:0.72rem;color:#6b7280;text-align:center;"></p>
+    </div>
+    <div id="cartDeliveryRow" style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid #f3f4f6;margin-bottom:6px;"></div>
+    <div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0 12px;">
+      <span style="font-weight:700;font-size:0.95rem;">Total</span>
+      <span id="cartTotalAmt" style="font-size:1.25rem;font-weight:900;color:#fd7d00;"></span>
+    </div>
   </div>
   <div style="padding:12px 16px 20px;">
     <button id="cartCheckoutBtn" onclick="openCheckout()" style="display:none;width:100%;background:#fd7d00;color:#fff;border:none;border-radius:12px;padding:14px;font-size:1rem;font-weight:700;cursor:pointer;">
@@ -1675,9 +1714,19 @@
       <img id="qrImg" src="" alt="PayNow QR" style="width:240px;height:240px;border-radius:12px;border:1px solid #e5e7eb;" />
 
       <div style="background:#fff3e0;border-radius:14px;padding:12px;margin:14px 0 0;">
-        <p style="font-size:0.75rem;color:#6b7280;margin:0 0 4px;">Amount to Pay</p>
-        <p id="qrTotal" style="font-size:1.8rem;font-weight:800;color:#fd7d00;margin:0;"></p>
-        <p style="font-size:0.72rem;color:#9ca3af;margin:4px 0 0;">PayNow to +65 8363 8499</p>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+          <p style="font-size:0.72rem;color:#6b7280;margin:0;">Subtotal</p>
+          <p id="qrSubtotalLine" style="font-size:0.82rem;color:#374151;font-weight:600;margin:0;"></p>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+          <p style="font-size:0.72rem;color:#6b7280;margin:0;">Delivery</p>
+          <p id="qrDeliveryLine" style="font-size:0.82rem;margin:0;"></p>
+        </div>
+        <div style="border-top:1px solid #fed7aa;padding-top:8px;">
+          <p style="font-size:0.72rem;color:#6b7280;margin:0 0 2px;">Total to Pay</p>
+          <p id="qrTotal" style="font-size:1.8rem;font-weight:900;color:#fd7d00;margin:0;"></p>
+        </div>
+        <p style="font-size:0.72rem;color:#9ca3af;margin:6px 0 0;">PayNow to +65 8363 8499</p>
       </div>
 
       <div style="background:#fffbeb;border:1.5px solid #feb336;border-radius:14px;padding:12px;margin:12px 0;">
