@@ -1564,7 +1564,9 @@
     if (!name) { alert('Please enter your full name'); return; }
     if (!phone) { alert('Please enter your phone number'); return; }
     if (!/^\d{6}$/.test(postal)) { alert('Please enter a valid 6-digit postal code'); return; }
+    const location = document.getElementById('co-location').value.trim();
     if (cart.length === 0) { alert('Your cart is empty'); return; }
+    if (!location) { alert('Please select your collection / delivery point'); return; }
 
     const subtotalAmt = cartTotal();
     const total = orderTotal();
@@ -1585,10 +1587,14 @@
     // Build WhatsApp order summary
     const itemList = cart.map(i => `• ${i.name} ×${i.qty} = S$${(i.price*i.qty).toFixed(2)}`).join('\n');
     const deliveryLine = fee === 0 ? 'Delivery: FREE' : `Delivery: S$${fee.toFixed(2)}`;
-    const waMsg = `Hi Elitez Deals! Here's my order:\n\n${itemList}\n\nSubtotal: S$${subtotalAmt.toFixed(2)}\n${deliveryLine}\nTotal: S$${total.toFixed(2)}\nPayRef: ${payRef}\nPhone: ${phone}\n\nI've completed PayNow payment.`;
+    const waMsg = `Hi Elitez Deals! Here's my order:\n\n${itemList}\n\nSubtotal: S$${subtotalAmt.toFixed(2)}\n${deliveryLine}\nTotal: S$${total.toFixed(2)}\nPayRef: ${payRef}\nPhone: ${phone}\nDelivery to: ${location}\n\nI've completed PayNow payment.`;
     document.getElementById('confirmWaBtn').href = 'https://wa.me/6583638499?text=' + encodeURIComponent(waMsg);
 
     // Render order thumbnail strip in QR screen
+    // Show selected location in QR screen
+    const locDisplay = document.getElementById('qrLocationLine');
+    if (locDisplay) locDisplay.textContent = location;
+
     const thumbContainer = document.getElementById('qrOrderThumbs');
     if (thumbContainer) {
       thumbContainer.innerHTML = cart.map(item => `
@@ -1693,10 +1699,52 @@
         <p style="font-size:0.72rem;color:#9ca3af;margin:4px 0 0;">Your Singapore postal code — used as payment reference</p>
       </div>
 
-      <div style="margin-bottom:20px;">
+      <div style="margin-bottom:14px;">
         <label style="font-size:0.78rem;font-weight:600;color:#374151;display:block;margin-bottom:6px;">📱 WhatsApp / Phone</label>
         <input id="co-phone" type="tel" placeholder="+65 9123 4567" style="width:100%;padding:10px 12px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:0.95rem;box-sizing:border-box;" />
         <p style="font-size:0.72rem;color:#9ca3af;margin:4px 0 0;">We'll send order updates here</p>
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <label style="font-size:0.78rem;font-weight:600;color:#374151;display:block;margin-bottom:6px;">📦 Collection / Delivery Point</label>
+        <select id="co-location" style="width:100%;padding:10px 12px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:0.88rem;box-sizing:border-box;background:#fff;color:#111;font-family:'Lato',sans-serif;appearance:auto;">
+          <option value="">— Select your location —</option>
+          <optgroup label="🏗️ Foreign Worker Dormitories">
+            <option value="Sungei Tengah Lodge, Choa Chu Kang">Sungei Tengah Lodge — Choa Chu Kang</option>
+            <option value="Tuas View Dormitory, Tuas South">Tuas View Dormitory — Tuas South</option>
+            <option value="Pioneer Lodge, Jurong West">Pioneer Lodge — Jurong West</option>
+            <option value="ASPRI-Westlite Papan, Jurong">ASPRI-Westlite Papan — Jurong</option>
+            <option value="Westlite Woodlands, Woodlands">Westlite Woodlands — Woodlands</option>
+            <option value="Westlite Mandai, Mandai">Westlite Mandai — Mandai</option>
+            <option value="Westlite Toh Guan, Jurong East">Westlite Toh Guan — Jurong East</option>
+            <option value="Westlite Ubi, Kaki Bukit">Westlite Ubi — Kaki Bukit</option>
+            <option value="S11 Changi Lodge 2, Tanah Merah">S11 Changi Lodge 2 — Tanah Merah</option>
+            <option value="Tampines Dormitory, Tampines">Tampines Dormitory — Tampines</option>
+            <option value="The Leo Dormitory, Kaki Bukit">The Leo Dormitory — Kaki Bukit</option>
+            <option value="Homestay Lodge, Kaki Bukit">Homestay Lodge — Kaki Bukit</option>
+            <option value="Kranji Lodge, Kranji">Kranji Lodge — Kranji</option>
+            <option value="Sembawang Dormitory, Sembawang">Sembawang Dormitory — Sembawang</option>
+            <option value="Tuas Dormitory T08, Tuas">Tuas Dormitory (T08) — Tuas</option>
+            <option value="Caven Dormitory, Pioneer">Caven Dormitory — Pioneer</option>
+            <option value="Pasir Ris Lodge, Pasir Ris">Pasir Ris Lodge — Pasir Ris</option>
+            <option value="Jurong Island Dormitory, Jurong Island">Jurong Island Dormitory — Jurong Island</option>
+            <option value="Punggol Dormitory, Punggol">Punggol Dormitory — Punggol</option>
+            <option value="Buona Vista Lodge, Queenstown">Buona Vista Lodge — Queenstown</option>
+          </optgroup>
+          <optgroup label="🛍️ Domestic Worker Gathering Spots">
+            <option value="Lucky Plaza, Orchard Road">Lucky Plaza — Orchard Road</option>
+            <option value="Peninsula Plaza, City Hall">Peninsula Plaza — City Hall</option>
+            <option value="City Plaza, Geylang">City Plaza — Geylang</option>
+            <option value="Mustafa Centre, Little India">Mustafa Centre — Little India</option>
+            <option value="Jurong Point, Jurong West">Jurong Point — Jurong West</option>
+            <option value="Katong Shopping Centre, Joo Chiat">Katong / Joo Chiat — East Coast</option>
+            <option value="East Coast Park, East Coast">East Coast Park — East Coast</option>
+            <option value="Changi City Point, Changi">Changi City Point — Changi</option>
+            <option value="Causeway Point, Woodlands">Causeway Point / Woodlands Civic Centre — Woodlands</option>
+            <option value="Holland Village, Buona Vista">Holland Village — Buona Vista</option>
+          </optgroup>
+        </select>
+        <p style="font-size:0.72rem;color:#9ca3af;margin:4px 0 0;">We will deliver to this location on your scheduled delivery day</p>
       </div>
 
       <button onclick="generateQR()" style="width:100%;background:#fd7d00;color:#fff;border:none;border-radius:12px;padding:14px;font-size:1rem;font-weight:700;cursor:pointer;">
@@ -1707,7 +1755,16 @@
     <!-- QR SCREEN -->
     <div id="qrScreen" style="display:none;padding:16px 20px;text-align:center;">
       <!-- Order thumbnails -->
-      <div id="qrOrderThumbs" style="text-align:left;background:#f9fafb;border-radius:12px;padding:10px 12px;margin-bottom:14px;"></div>
+      <div id="qrOrderThumbs" style="text-align:left;background:#f9fafb;border-radius:12px;padding:10px 12px;margin-bottom:10px;"></div>
+
+      <!-- Delivery location confirmation -->
+      <div style="display:flex;align-items:center;gap:8px;background:#e0f4f7;border-radius:10px;padding:9px 12px;margin-bottom:14px;text-align:left;">
+        <span style="font-size:1.1rem;">📦</span>
+        <div>
+          <p style="font-size:0.7rem;color:#4295a5;font-weight:700;margin:0;text-transform:uppercase;letter-spacing:.4px;">Delivery to</p>
+          <p id="qrLocationLine" style="font-size:0.88rem;font-weight:700;color:#002a3d;margin:0;"></p>
+        </div>
+      </div>
 
       <p style="font-size:0.85rem;color:#374151;margin:0 0 12px;font-weight:500;">Scan with DBS, OCBC, UOB, GrabPay, PayLah! etc.</p>
 
