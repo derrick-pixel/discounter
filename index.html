@@ -332,6 +332,352 @@
 
     /* Hidden class for filter */
     .card[data-cat].hidden { display: none; }
+
+    /* ── HIDE ON MOBILE ───────────────────────── */
+    @media (max-width: 640px) { .hide-mobile { display: none !important; } }
+
+    /* ── CART NAV BUTTON ──────────────────────── */
+    .cart-nav-btn {
+      background: rgba(255,255,255,.2);
+      border: none;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background .15s;
+      font-family: inherit;
+    }
+    .cart-nav-btn:hover { background: rgba(255,255,255,.35); }
+    .cart-count {
+      background: #fbbf24;
+      color: #78350f;
+      font-size: 11px;
+      font-weight: 800;
+      min-width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+    }
+
+    /* ── CARD ACTIONS (add to cart) ───────────── */
+    .card-actions { margin-top: 8px; }
+    .add-btn {
+      width: 100%;
+      background: #dc2626;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background .15s;
+    }
+    .add-btn:hover { background: #b91c1c; }
+    .qty-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #fee2e2;
+      border-radius: 10px;
+      padding: 2px 4px;
+    }
+    .qty-btn {
+      background: none;
+      border: none;
+      color: #dc2626;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+      font-family: inherit;
+    }
+    .qty-btn:hover { background: #fca5a5; }
+    .qty-num { font-weight: 700; font-size: 15px; color: #991b1b; }
+
+    /* ── OVERLAY ──────────────────────────────── */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.5);
+      z-index: 200;
+      backdrop-filter: blur(2px);
+    }
+    .overlay.open { display: block; }
+
+    /* ── CART DRAWER ──────────────────────────── */
+    .cart-drawer {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: #fff;
+      border-radius: 20px 20px 0 0;
+      z-index: 300;
+      transform: translateY(100%);
+      transition: transform .3s cubic-bezier(.4,0,.2,1);
+      max-height: 88vh;
+      display: flex;
+      flex-direction: column;
+    }
+    @media (min-width: 640px) {
+      .cart-drawer {
+        top: 0; bottom: 0; right: 0; left: auto;
+        width: 400px;
+        border-radius: 0;
+        transform: translateX(100%);
+        max-height: 100vh;
+      }
+    }
+    .cart-drawer.open { transform: none; }
+    .drawer-header {
+      padding: 16px 20px;
+      border-bottom: 1px solid #f3f4f6;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .drawer-header h2 { font-size: 17px; font-weight: 700; }
+    .drawer-close {
+      background: #f3f4f6;
+      border: none;
+      border-radius: 999px;
+      width: 32px; height: 32px;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px 16px;
+    }
+    .cart-item {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid #f3f4f6;
+      align-items: center;
+    }
+    .cart-item-img {
+      width: 52px; height: 52px;
+      border-radius: 8px;
+      background: #f9fafb;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .cart-item-img img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+    .cart-item-info { flex: 1; min-width: 0; }
+    .cart-item-name { font-size: 13px; font-weight: 600; line-height: 1.3; }
+    .cart-item-price { font-size: 13px; color: #dc2626; font-weight: 700; margin-top: 2px; }
+    .cart-item-controls {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .ci-btn {
+      background: #f3f4f6;
+      border: none; border-radius: 999px;
+      width: 28px; height: 28px;
+      font-size: 16px; font-weight: 700;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ci-btn:hover { background: #e5e7eb; }
+    .ci-qty { font-weight: 700; font-size: 14px; min-width: 20px; text-align: center; }
+    .ci-remove {
+      background: none; border: none;
+      color: #d1d5db; cursor: pointer;
+      font-size: 18px; line-height: 1;
+      padding: 0 4px;
+    }
+    .ci-remove:hover { color: #dc2626; }
+    .cart-empty {
+      text-align: center;
+      padding: 48px 16px;
+      color: #9ca3af;
+    }
+    .cart-empty p:first-child { font-size: 40px; margin-bottom: 8px; }
+    .cart-footer {
+      padding: 16px 20px;
+      border-top: 1px solid #f3f4f6;
+      flex-shrink: 0;
+      background: #fff;
+    }
+    .cart-total-row {
+      display: flex; justify-content: space-between;
+      font-size: 15px; font-weight: 700; margin-bottom: 12px;
+    }
+    .cart-total-row span:last-child { color: #dc2626; font-size: 20px; }
+    .checkout-btn {
+      width: 100%;
+      background: #dc2626;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background .15s;
+    }
+    .checkout-btn:hover { background: #b91c1c; }
+    .checkout-btn:disabled { background: #d1d5db; cursor: not-allowed; }
+
+    /* ── CHECKOUT MODAL ───────────────────────── */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    @media (min-width: 640px) { .modal { align-items: center; } }
+    .modal.open { display: flex; }
+    .modal-box {
+      background: #fff;
+      border-radius: 20px 20px 0 0;
+      width: 100%;
+      max-width: 480px;
+      padding: 24px 20px;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    @media (min-width: 640px) {
+      .modal-box { border-radius: 20px; }
+    }
+    .modal-title {
+      font-size: 18px; font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .modal-sub {
+      font-size: 13px; color: #6b7280;
+      margin-bottom: 20px;
+    }
+    .field { margin-bottom: 14px; }
+    .field label {
+      display: block;
+      font-size: 12px; font-weight: 600;
+      color: #374151; margin-bottom: 5px;
+      text-transform: uppercase; letter-spacing: .4px;
+    }
+    .field input {
+      width: 100%;
+      border: 1.5px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 11px 14px;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color .15s;
+    }
+    .field input:focus { border-color: #dc2626; }
+    .gen-btn {
+      width: 100%;
+      background: #dc2626;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      margin-top: 4px;
+    }
+    .gen-btn:hover { background: #b91c1c; }
+
+    /* ── QR SCREEN ────────────────────────────── */
+    .qr-screen { display: none; }
+    .qr-screen.show { display: block; }
+    .checkout-form.hide { display: none; }
+    .qr-img-wrap {
+      background: #f9fafb;
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+      margin: 16px 0;
+    }
+    .qr-img-wrap img { width: 240px; height: 240px; }
+    .qr-amount {
+      text-align: center;
+      background: #fee2e2;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .qr-amount p:first-child { font-size: 12px; color: #6b7280; }
+    .qr-amount .big-amt { font-size: 32px; font-weight: 800; color: #dc2626; }
+    .qr-ref {
+      background: #fefce8;
+      border: 1.5px solid #fde047;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+    }
+    .qr-ref p:first-child { font-size: 11px; font-weight: 700; color: #854d0e; text-transform: uppercase; letter-spacing: .4px; }
+    .ref-value {
+      font-size: 20px; font-weight: 800;
+      font-family: monospace;
+      color: #78350f;
+      letter-spacing: 2px;
+      display: flex; align-items: center; gap: 8px;
+      margin-top: 4px;
+    }
+    .copy-btn {
+      background: none; border: none;
+      cursor: pointer; font-size: 16px;
+      color: #d97706;
+      padding: 2px;
+    }
+    .qr-steps {
+      font-size: 13px; color: #374151;
+      line-height: 1.7;
+      background: #f9fafb;
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+    }
+    .qr-steps ol { padding-left: 18px; }
+    .paid-btn {
+      width: 100%;
+      background: #16a34a;
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .paid-btn:hover { background: #15803d; }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 13px;
+      color: #9ca3af;
+      cursor: pointer;
+      background: none; border: none;
+      font-family: inherit;
+    }
+    .back-link:hover { color: #374151; }
   </style>
 </head>
 <body>
@@ -341,8 +687,11 @@
   <div class="navbar-inner">
     <div class="navbar-brand">🏷️ Discounter SG</div>
     <div class="navbar-right">
-      <span>📦 Free Delivery to Dorms</span>
-      <a href="https://wa.me/6583638499?text=Hi%2C%20I%20want%20to%20order%20from%20Discounter%20SG!">💬 WhatsApp Us</a>
+      <span class="hide-mobile">📦 Free Delivery to Dorms</span>
+      <a href="https://wa.me/6583638499?text=Hi%2C%20I%20want%20to%20order%20from%20Discounter%20SG!" class="hide-mobile">💬 WhatsApp</a>
+      <button class="cart-nav-btn" onclick="openCart()">
+        🛒 Cart <span class="cart-count" id="cartCount" style="display:none">0</span>
+      </button>
     </div>
   </div>
 </header>
@@ -400,54 +749,108 @@
     <div class="card" data-cat="beverages">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/888/800/207/6009/front_en.9.400.jpg" alt="Coca-Cola Classic" loading="lazy"><span class="discount-badge">-63%</span></div>
       <div class="card-body">
-        <p class="card-name">Coca-Cola Classic 24 × 320ml</p>
+        <p class="card-name" data-id="1" data-price="5.90">Coca-Cola Classic 24 × 320ml</p>
         <span class="expiry warning">⚠ Exp Sep 2025</span>
         <div class="price-row"><span class="price-now">S$5.90</span><span class="price-was">S$15.90</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(1,'Coca-Cola Classic 24 × 320ml',5.90)" id="add-btn-1">+ Add to Cart</button>
+        <div class="qty-row" id="qty-1" style="display:none">
+          <button class="qty-btn" onclick="changeQty(1,-1)">−</button>
+          <span class="qty-num" id="qty-num-1">1</span>
+          <button class="qty-btn" onclick="changeQty(1,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="beverages">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/900/249/021/5408/front_sv.19.400.jpg" alt="Red Bull Energy Drink" loading="lazy"><span class="discount-badge">-64%</span></div>
       <div class="card-body">
-        <p class="card-name">Red Bull Energy Drink 4 × 250ml</p>
+        <p class="card-name" data-id="2" data-price="3.50">Red Bull Energy Drink 4 × 250ml</p>
         <span class="expiry critical">🔴 Exp Aug 2025</span>
         <div class="price-row"><span class="price-now">S$3.50</span><span class="price-was">S$9.70</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(2,'Red Bull Energy Drink 4 × 250ml',3.50)" id="add-btn-2">+ Add to Cart</button>
+        <div class="qty-row" id="qty-2" style="display:none">
+          <button class="qty-btn" onclick="changeQty(2,-1)">−</button>
+          <span class="qty-num" id="qty-num-2">1</span>
+          <button class="qty-btn" onclick="changeQty(2,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="beverages">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/888/819/617/3324/front_en.16.400.jpg" alt="Pokka Green Tea" loading="lazy"><span class="discount-badge">-62%</span></div>
       <div class="card-body">
-        <p class="card-name">Pokka Green Tea 24 × 300ml</p>
+        <p class="card-name" data-id="3" data-price="5.50">Pokka Green Tea 24 × 300ml</p>
         <span class="expiry warning">⚠ Exp Oct 2025</span>
         <div class="price-row"><span class="price-now">S$5.50</span><span class="price-was">S$14.40</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(3,'Pokka Green Tea 24 × 300ml',5.50)" id="add-btn-3">+ Add to Cart</button>
+        <div class="qty-row" id="qty-3" style="display:none">
+          <button class="qty-btn" onclick="changeQty(3,-1)">−</button>
+          <span class="qty-num" id="qty-num-3">1</span>
+          <button class="qty-btn" onclick="changeQty(3,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="beverages">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/955/600/121/7233/front_en.4.400.jpg" alt="Milo 3-in-1" loading="lazy"><span class="discount-badge">-64%</span></div>
       <div class="card-body">
-        <p class="card-name">Milo 3-in-1 Instant Drink 15 sachets</p>
+        <p class="card-name" data-id="4" data-price="2.90">Milo 3-in-1 Instant Drink 15 sachets</p>
         <span class="expiry warning">⚠ Exp Nov 2025</span>
         <div class="price-row"><span class="price-now">S$2.90</span><span class="price-was">S$7.95</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(4,'Milo 3-in-1 Instant Drink 15 sachets',2.90)" id="add-btn-4">+ Add to Cart</button>
+        <div class="qty-row" id="qty-4" style="display:none">
+          <button class="qty-btn" onclick="changeQty(4,-1)">−</button>
+          <span class="qty-num" id="qty-num-4">1</span>
+          <button class="qty-btn" onclick="changeQty(4,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="beverages">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/890/105/200/0722/front_en.3.400.jpg" alt="Tata Tea Premium" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
-        <p class="card-name">Tata Tea Premium Leaf Tea 250g</p>
+        <p class="card-name" data-id="5" data-price="2.10">Tata Tea Premium Leaf Tea 250g</p>
         <span class="expiry ok">✓ Exp Dec 2025</span>
         <div class="price-row"><span class="price-now">S$2.10</span><span class="price-was">S$5.30</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(5,'Tata Tea Premium Leaf Tea 250g',2.10)" id="add-btn-5">+ Add to Cart</button>
+        <div class="qty-row" id="qty-5" style="display:none">
+          <button class="qty-btn" onclick="changeQty(5,-1)">−</button>
+          <span class="qty-num" id="qty-num-5">1</span>
+          <button class="qty-btn" onclick="changeQty(5,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="beverages">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/888/820/080/1717/front_en.3.400.jpg" alt="100Plus Isotonic" loading="lazy"><span class="discount-badge">-63%</span></div>
       <div class="card-body">
-        <p class="card-name">100Plus Isotonic Drink 24 × 325ml</p>
+        <p class="card-name" data-id="6" data-price="5.50">100Plus Isotonic Drink 24 × 325ml</p>
         <span class="expiry warning">⚠ Exp Sep 2025</span>
         <div class="price-row"><span class="price-now">S$5.50</span><span class="price-was">S$14.90</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(6,'100Plus Isotonic Drink 24 × 325ml',5.50)" id="add-btn-6">+ Add to Cart</button>
+        <div class="qty-row" id="qty-6" style="display:none">
+          <button class="qty-btn" onclick="changeQty(6,-1)">−</button>
+          <span class="qty-num" id="qty-num-6">1</span>
+          <button class="qty-btn" onclick="changeQty(6,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
@@ -455,36 +858,72 @@
     <div class="card" data-cat="instant_noodles">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/899/496/300/3876/front_en.3.400.jpg" alt="Indomie Mi Goreng" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
-        <p class="card-name">Indomie Mi Goreng Fried Noodles 5 × 80g</p>
+        <p class="card-name" data-id="7" data-price="0.90">Indomie Mi Goreng Fried Noodles 5 × 80g</p>
         <span class="expiry critical">🔴 Exp Jul 2025</span>
         <div class="price-row"><span class="price-now">S$0.90</span><span class="price-was">S$2.25</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(7,'Indomie Mi Goreng Fried Noodles 5 × 80g',0.90)" id="add-btn-7">+ Add to Cart</button>
+        <div class="qty-row" id="qty-7" style="display:none">
+          <button class="qty-btn" onclick="changeQty(7,-1)">−</button>
+          <span class="qty-num" id="qty-num-7">1</span>
+          <button class="qty-btn" onclick="changeQty(7,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="instant_noodles">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/955/600/112/9963/front_en.4.400.jpg" alt="Maggi Curry Noodles" loading="lazy"><span class="discount-badge">-61%</span></div>
       <div class="card-body">
-        <p class="card-name">Maggi 2-Min Noodles Curry 5 × 79g</p>
+        <p class="card-name" data-id="8" data-price="1.00">Maggi 2-Min Noodles Curry 5 × 79g</p>
         <span class="expiry critical">🔴 Exp Aug 2025</span>
         <div class="price-row"><span class="price-now">S$1.00</span><span class="price-was">S$2.57</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(8,'Maggi 2-Min Noodles Curry 5 × 79g',1.00)" id="add-btn-8">+ Add to Cart</button>
+        <div class="qty-row" id="qty-8" style="display:none">
+          <button class="qty-btn" onclick="changeQty(8,-1)">−</button>
+          <span class="qty-num" id="qty-num-8">1</span>
+          <button class="qty-btn" onclick="changeQty(8,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="instant_noodles">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/955/600/113/7722/front_en.58.400.jpg" alt="Maggi Chicken Noodles" loading="lazy"><span class="discount-badge">-61%</span></div>
       <div class="card-body">
-        <p class="card-name">Maggi 2-Min Noodles Chicken 5 × 77g</p>
+        <p class="card-name" data-id="9" data-price="1.00">Maggi 2-Min Noodles Chicken 5 × 77g</p>
         <span class="expiry critical">🔴 Exp Jul 2025</span>
         <div class="price-row"><span class="price-now">S$1.00</span><span class="price-was">S$2.57</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(9,'Maggi 2-Min Noodles Chicken 5 × 77g',1.00)" id="add-btn-9">+ Add to Cart</button>
+        <div class="qty-row" id="qty-9" style="display:none">
+          <button class="qty-btn" onclick="changeQty(9,-1)">−</button>
+          <span class="qty-num" id="qty-num-9">1</span>
+          <button class="qty-btn" onclick="changeQty(9,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="instant_noodles">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/489/787/863/0011/front_fr.12.400.jpg" alt="Nissin Cup Noodles Seafood" loading="lazy"><span class="discount-badge">-59%</span></div>
       <div class="card-body">
-        <p class="card-name">Nissin Cup Noodles Seafood 6 × 75g</p>
+        <p class="card-name" data-id="10" data-price="2.80">Nissin Cup Noodles Seafood 6 × 75g</p>
         <span class="expiry critical">🔴 Exp Sep 2025</span>
         <div class="price-row"><span class="price-now">S$2.80</span><span class="price-was">S$6.90</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(10,'Nissin Cup Noodles Seafood 6 × 75g',2.80)" id="add-btn-10">+ Add to Cart</button>
+        <div class="qty-row" id="qty-10" style="display:none">
+          <button class="qty-btn" onclick="changeQty(10,-1)">−</button>
+          <span class="qty-num" id="qty-num-10">1</span>
+          <button class="qty-btn" onclick="changeQty(10,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
@@ -492,36 +931,72 @@
     <div class="card" data-cat="canned_goods">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/000/009/550/0539/front_en.4.400.jpg" alt="Ayam Brand Sardines" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
-        <p class="card-name">Ayam Brand Sardines in Tomato Sauce 215g</p>
+        <p class="card-name" data-id="11" data-price="0.85">Ayam Brand Sardines in Tomato Sauce 215g</p>
         <span class="expiry ok">✓ Exp Dec 2025</span>
         <div class="price-row"><span class="price-now">S$0.85</span><span class="price-was">S$2.15</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(11,'Ayam Brand Sardines in Tomato Sauce 215g',0.85)" id="add-btn-11">+ Add to Cart</button>
+        <div class="qty-row" id="qty-11" style="display:none">
+          <button class="qty-btn" onclick="changeQty(11,-1)">−</button>
+          <span class="qty-num" id="qty-num-11">1</span>
+          <button class="qty-btn" onclick="changeQty(11,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="canned_goods">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/955/604/161/3927/front_en.19.400.jpg" alt="Ayam Brand Tuna" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
-        <p class="card-name">Ayam Brand Tuna Chunks in Water 185g</p>
+        <p class="card-name" data-id="12" data-price="0.95">Ayam Brand Tuna Chunks in Water 185g</p>
         <span class="expiry ok">✓ Exp Nov 2025</span>
         <div class="price-row"><span class="price-now">S$0.95</span><span class="price-was">S$2.40</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(12,'Ayam Brand Tuna Chunks in Water 185g',0.95)" id="add-btn-12">+ Add to Cart</button>
+        <div class="qty-row" id="qty-12" style="display:none">
+          <button class="qty-btn" onclick="changeQty(12,-1)">−</button>
+          <span class="qty-num" id="qty-num-12">1</span>
+          <button class="qty-btn" onclick="changeQty(12,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="canned_goods">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/480/016/344/3043/front_en.12.400.jpg" alt="Ligo Sardines" loading="lazy"><span class="discount-badge">-59%</span></div>
       <div class="card-body">
-        <p class="card-name">Ligo Sardines in Corn Oil 155g</p>
+        <p class="card-name" data-id="13" data-price="0.65">Ligo Sardines in Corn Oil 155g</p>
         <span class="expiry warning">⚠ Exp Oct 2025</span>
         <div class="price-row"><span class="price-now">S$0.65</span><span class="price-was">S$1.60</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(13,'Ligo Sardines in Corn Oil 155g',0.65)" id="add-btn-13">+ Add to Cart</button>
+        <div class="qty-row" id="qty-13" style="display:none">
+          <button class="qty-btn" onclick="changeQty(13,-1)">−</button>
+          <span class="qty-num" id="qty-num-13">1</span>
+          <button class="qty-btn" onclick="changeQty(13,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="canned_goods">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/500/015/707/1644/front_en.19.400.jpg" alt="Baked Beans" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
-        <p class="card-name">FairPrice Baked Beans in Tomato Sauce 420g</p>
+        <p class="card-name" data-id="14" data-price="0.50">FairPrice Baked Beans in Tomato Sauce 420g</p>
         <span class="expiry ok">✓ Exp Jan 2026</span>
         <div class="price-row"><span class="price-now">S$0.50</span><span class="price-was">S$1.25</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(14,'FairPrice Baked Beans in Tomato Sauce 420g',0.50)" id="add-btn-14">+ Add to Cart</button>
+        <div class="qty-row" id="qty-14" style="display:none">
+          <button class="qty-btn" onclick="changeQty(14,-1)">−</button>
+          <span class="qty-num" id="qty-num-14">1</span>
+          <button class="qty-btn" onclick="changeQty(14,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
@@ -529,18 +1004,36 @@
     <div class="card" data-cat="rice_grains">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/885/018/740/0030/front_fr.16.400.jpg" alt="Royal Umbrella Thai Rice" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
-        <p class="card-name">Royal Umbrella Thai Jasmine Rice 5kg</p>
+        <p class="card-name" data-id="15" data-price="4.50">Royal Umbrella Thai Jasmine Rice 5kg</p>
         <span class="expiry ok">✓ Exp Dec 2025</span>
         <div class="price-row"><span class="price-now">S$4.50</span><span class="price-was">S$11.25</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(15,'Royal Umbrella Thai Jasmine Rice 5kg',4.50)" id="add-btn-15">+ Add to Cart</button>
+        <div class="qty-row" id="qty-15" style="display:none">
+          <button class="qty-btn" onclick="changeQty(15,-1)">−</button>
+          <span class="qty-num" id="qty-num-15">1</span>
+          <button class="qty-btn" onclick="changeQty(15,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="rice_grains">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/069/022/510/1134/front_en.16.400.jpg" alt="India Gate Basmati Rice" loading="lazy"><span class="discount-badge">-61%</span></div>
       <div class="card-body">
-        <p class="card-name">India Gate Basmati Rice Classic 2kg</p>
+        <p class="card-name" data-id="16" data-price="3.50">India Gate Basmati Rice Classic 2kg</p>
         <span class="expiry ok">✓ Exp Nov 2025</span>
         <div class="price-row"><span class="price-now">S$3.50</span><span class="price-was">S$8.95</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(16,'India Gate Basmati Rice Classic 2kg',3.50)" id="add-btn-16">+ Add to Cart</button>
+        <div class="qty-row" id="qty-16" style="display:none">
+          <button class="qty-btn" onclick="changeQty(16,-1)">−</button>
+          <span class="qty-num" id="qty-num-16">1</span>
+          <button class="qty-btn" onclick="changeQty(16,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
@@ -548,36 +1041,72 @@
     <div class="card" data-cat="cooking_essentials">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/888/802/512/3629/front_en.3.400.jpg" alt="Knife Brand Cooking Oil" loading="lazy"><span class="discount-badge">-61%</span></div>
       <div class="card-body">
-        <p class="card-name">Knife Brand Cooking Oil 2L</p>
+        <p class="card-name" data-id="17" data-price="2.10">Knife Brand Cooking Oil 2L</p>
         <span class="expiry warning">⚠ Exp Oct 2025</span>
         <div class="price-row"><span class="price-now">S$2.10</span><span class="price-was">S$5.40</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(17,'Knife Brand Cooking Oil 2L',2.10)" id="add-btn-17">+ Add to Cart</button>
+        <div class="qty-row" id="qty-17" style="display:none">
+          <button class="qty-btn" onclick="changeQty(17,-1)">−</button>
+          <span class="qty-num" id="qty-num-17">1</span>
+          <button class="qty-btn" onclick="changeQty(17,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="cooking_essentials">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/955/600/160/2107/front_en.5.400.jpg" alt="Maggi Oyster Sauce" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
-        <p class="card-name">Maggi Oyster Sauce 510g</p>
+        <p class="card-name" data-id="18" data-price="1.25">Maggi Oyster Sauce 510g</p>
         <span class="expiry ok">✓ Exp Dec 2025</span>
         <div class="price-row"><span class="price-now">S$1.25</span><span class="price-was">S$3.15</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(18,'Maggi Oyster Sauce 510g',1.25)" id="add-btn-18">+ Add to Cart</button>
+        <div class="qty-row" id="qty-18" style="display:none">
+          <button class="qty-btn" onclick="changeQty(18,-1)">−</button>
+          <span class="qty-num" id="qty-num-18">1</span>
+          <button class="qty-btn" onclick="changeQty(18,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="cooking_essentials">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/500/018/416/1028/front_en.54.400.jpg" alt="Knorr Chicken Stock Cubes" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
-        <p class="card-name">Knorr Chicken Stock Cubes 60g (6 cubes)</p>
+        <p class="card-name" data-id="19" data-price="0.85">Knorr Chicken Stock Cubes 60g (6 cubes)</p>
         <span class="expiry ok">✓ Exp Nov 2025</span>
         <div class="price-row"><span class="price-now">S$0.85</span><span class="price-was">S$2.10</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(19,'Knorr Chicken Stock Cubes 60g (6 cubes)',0.85)" id="add-btn-19">+ Add to Cart</button>
+        <div class="qty-row" id="qty-19" style="display:none">
+          <button class="qty-btn" onclick="changeQty(19,-1)">−</button>
+          <span class="qty-num" id="qty-num-19">1</span>
+          <button class="qty-btn" onclick="changeQty(19,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="cooking_essentials">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/955/606/500/0987/front_en.3.400.jpg" alt="Curry Powder" loading="lazy"><span class="discount-badge">-61%</span></div>
       <div class="card-body">
-        <p class="card-name">FairPrice Instant Curry Powder 250g</p>
+        <p class="card-name" data-id="20" data-price="1.15">FairPrice Instant Curry Powder 250g</p>
         <span class="expiry warning">⚠ Exp Sep 2025</span>
         <div class="price-row"><span class="price-now">S$1.15</span><span class="price-was">S$2.95</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(20,'FairPrice Instant Curry Powder 250g',1.15)" id="add-btn-20">+ Add to Cart</button>
+        <div class="qty-row" id="qty-20" style="display:none">
+          <button class="qty-btn" onclick="changeQty(20,-1)">−</button>
+          <span class="qty-num" id="qty-num-20">1</span>
+          <button class="qty-btn" onclick="changeQty(20,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
@@ -585,63 +1114,126 @@
     <div class="card" data-cat="personal_care">
       <div class="card-img"><img src="https://images.openbeautyfacts.org/images/products/899/999/903/0391/front_en.3.400.jpg" alt="Lifebuoy Body Wash" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
-        <p class="card-name">Lifebuoy Antibacterial Body Wash 900ml</p>
+        <p class="card-name" data-id="21" data-price="2.60">Lifebuoy Antibacterial Body Wash 900ml</p>
         <span class="expiry critical">🔴 Exp Aug 2025</span>
         <div class="price-row"><span class="price-now">S$2.60</span><span class="price-was">S$6.45</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(21,'Lifebuoy Antibacterial Body Wash 900ml',2.60)" id="add-btn-21">+ Add to Cart</button>
+        <div class="qty-row" id="qty-21" style="display:none">
+          <button class="qty-btn" onclick="changeQty(21,-1)">−</button>
+          <span class="qty-num" id="qty-num-21">1</span>
+          <button class="qty-btn" onclick="changeQty(21,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="personal_care">
       <div class="card-img"><img src="https://images.openbeautyfacts.org/images/products/871/716/374/2839/front_en.4.400.jpg" alt="Dove Body Wash" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
-        <p class="card-name">Dove Deeply Nourishing Body Wash 1L</p>
+        <p class="card-name" data-id="22" data-price="3.40">Dove Deeply Nourishing Body Wash 1L</p>
         <span class="expiry critical">🔴 Exp Jul 2025</span>
         <div class="price-row"><span class="price-now">S$3.40</span><span class="price-was">S$8.50</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(22,'Dove Deeply Nourishing Body Wash 1L',3.40)" id="add-btn-22">+ Add to Cart</button>
+        <div class="qty-row" id="qty-22" style="display:none">
+          <button class="qty-btn" onclick="changeQty(22,-1)">−</button>
+          <span class="qty-num" id="qty-num-22">1</span>
+          <button class="qty-btn" onclick="changeQty(22,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="personal_care">
       <div class="card-img"><img src="https://images.openbeautyfacts.org/images/products/885/193/235/5025/front_en.3.400.jpg" alt="Sunsilk Shampoo" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
-        <p class="card-name">Sunsilk Smooth & Manageable Shampoo 650ml</p>
+        <p class="card-name" data-id="23" data-price="2.75">Sunsilk Smooth & Manageable Shampoo 650ml</p>
         <span class="expiry warning">⚠ Exp Sep 2025</span>
         <div class="price-row"><span class="price-now">S$2.75</span><span class="price-was">S$6.90</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(23,'Sunsilk Smooth & Manageable Shampoo 650ml',2.75)" id="add-btn-23">+ Add to Cart</button>
+        <div class="qty-row" id="qty-23" style="display:none">
+          <button class="qty-btn" onclick="changeQty(23,-1)">−</button>
+          <span class="qty-num" id="qty-num-23">1</span>
+          <button class="qty-btn" onclick="changeQty(23,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="personal_care">
       <div class="card-img"><img src="https://images.openbeautyfacts.org/images/products/005/610/002/0561/front_en.5.400.jpg" alt="Head & Shoulders Shampoo" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
-        <p class="card-name">Head & Shoulders Anti-Dandruff Shampoo 650ml</p>
+        <p class="card-name" data-id="24" data-price="4.80">Head & Shoulders Anti-Dandruff Shampoo 650ml</p>
         <span class="expiry critical">🔴 Exp Aug 2025</span>
         <div class="price-row"><span class="price-now">S$4.80</span><span class="price-was">S$11.90</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(24,'Head & Shoulders Anti-Dandruff Shampoo 650ml',4.80)" id="add-btn-24">+ Add to Cart</button>
+        <div class="qty-row" id="qty-24" style="display:none">
+          <button class="qty-btn" onclick="changeQty(24,-1)">−</button>
+          <span class="qty-num" id="qty-num-24">1</span>
+          <button class="qty-btn" onclick="changeQty(24,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="personal_care">
       <div class="card-img"><img src="https://images.openbeautyfacts.org/images/products/890/910/603/0534/front_en.5.400.jpg" alt="Glow & Lovely Face Cream" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
-        <p class="card-name">Glow & Lovely Advanced Multivitamin Face Cream 50g</p>
+        <p class="card-name" data-id="25" data-price="1.80">Glow & Lovely Advanced Multivitamin Face Cream 50g</p>
         <span class="expiry critical">🔴 Exp Jul 2025</span>
         <div class="price-row"><span class="price-now">S$1.80</span><span class="price-was">S$4.50</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(25,'Glow & Lovely Advanced Multivitamin Face Cream 50g',1.80)" id="add-btn-25">+ Add to Cart</button>
+        <div class="qty-row" id="qty-25" style="display:none">
+          <button class="qty-btn" onclick="changeQty(25,-1)">−</button>
+          <span class="qty-num" id="qty-num-25">1</span>
+          <button class="qty-btn" onclick="changeQty(25,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="personal_care">
       <div class="card-img"><img src="https://images.openbeautyfacts.org/images/products/871/256/148/0369/front_fr.12.400.jpg" alt="Vaseline Body Lotion" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
-        <p class="card-name">Vaseline Intensive Care Body Lotion 400ml</p>
+        <p class="card-name" data-id="26" data-price="3.15">Vaseline Intensive Care Body Lotion 400ml</p>
         <span class="expiry warning">⚠ Exp Oct 2025</span>
         <div class="price-row"><span class="price-now">S$3.15</span><span class="price-was">S$7.90</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(26,'Vaseline Intensive Care Body Lotion 400ml',3.15)" id="add-btn-26">+ Add to Cart</button>
+        <div class="qty-row" id="qty-26" style="display:none">
+          <button class="qty-btn" onclick="changeQty(26,-1)">−</button>
+          <span class="qty-num" id="qty-num-26">1</span>
+          <button class="qty-btn" onclick="changeQty(26,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="personal_care">
       <div class="card-img"><img src="https://images.openbeautyfacts.org/images/products/005/800/031/3194/front_en.13.400.jpg" alt="Colgate Toothpaste" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
-        <p class="card-name">Colgate Anticavity Toothpaste 225g</p>
+        <p class="card-name" data-id="27" data-price="1.65">Colgate Anticavity Toothpaste 225g</p>
         <span class="expiry ok">✓ Exp Jan 2026</span>
         <div class="price-row"><span class="price-now">S$1.65</span><span class="price-was">S$4.15</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(27,'Colgate Anticavity Toothpaste 225g',1.65)" id="add-btn-27">+ Add to Cart</button>
+        <div class="qty-row" id="qty-27" style="display:none">
+          <button class="qty-btn" onclick="changeQty(27,-1)">−</button>
+          <span class="qty-num" id="qty-num-27">1</span>
+          <button class="qty-btn" onclick="changeQty(27,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
@@ -649,18 +1241,35 @@
     <div class="card" data-cat="snacks">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/896/400/009/0596/front_en.6.400.jpg" alt="Lay's Classic Chips" loading="lazy"><span class="discount-badge">-61%</span></div>
       <div class="card-body">
-        <p class="card-name">Lay's Classic Potato Chips 170g</p>
+        <p class="card-name" data-id="28" data-price="2.10">Lay's Classic Potato Chips 170g</p>
         <span class="expiry critical">🔴 Exp Aug 2025</span>
         <div class="price-row"><span class="price-now">S$2.10</span><span class="price-was">S$5.35</span></div>
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(28,'Lay\'s Classic Potato Chips 170g',2.10)" id="add-btn-28">+ Add to Cart</button>
+        <div class="qty-row" id="qty-28" style="display:none">
+          <button class="qty-btn" onclick="changeQty(28,-1)">−</button>
+          <span class="qty-num" id="qty-num-28">1</span>
+          <button class="qty-btn" onclick="changeQty(28,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
     <div class="card" data-cat="snacks">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/890/106/309/2280/front_en.4.400.jpg" alt="Britannia Good Day Cookies" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
-        <p class="card-name">Britannia Good Day Butter Cookies 216g</p>
+        <p class="card-name" data-id="29" data-price="1.40">Britannia Good Day Butter Cookies 216g</p>
         <span class="expiry warning">⚠ Exp Oct 2025</span>
         <div class="price-row"><span class="price-now">S$1.40</span><span class="price-was">S$3.50</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(29,'Britannia Good Day Butter Cookies 216g',1.40)" id="add-btn-29">+ Add to Cart</button>
+        <div class="qty-row" id="qty-29" style="display:none">
+          <button class="qty-btn" onclick="changeQty(29,-1)">−</button>
+          <span class="qty-num" id="qty-num-29">1</span>
+          <button class="qty-btn" onclick="changeQty(29,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
@@ -668,9 +1277,18 @@
     <div class="card" data-cat="dairy">
       <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/955/616/605/8191/front_en.13.400.jpg" alt="Dutch Lady Full Cream Milk" loading="lazy"><span class="discount-badge">-61%</span></div>
       <div class="card-body">
-        <p class="card-name">Dutch Lady Full Cream UHT Milk 1L</p>
+        <p class="card-name" data-id="30" data-price="1.05">Dutch Lady Full Cream UHT Milk 1L</p>
         <span class="expiry warning">⚠ Exp Sep 2025</span>
         <div class="price-row"><span class="price-now">S$1.05</span><span class="price-was">S$2.70</span></div>
+
+      <div class="card-actions">
+        <button class="add-btn" onclick="addToCart(30,'Dutch Lady Full Cream UHT Milk 1L',1.05)" id="add-btn-30">+ Add to Cart</button>
+        <div class="qty-row" id="qty-30" style="display:none">
+          <button class="qty-btn" onclick="changeQty(30,-1)">−</button>
+          <span class="qty-num" id="qty-num-30">1</span>
+          <button class="qty-btn" onclick="changeQty(30,1)">+</button>
+        </div>
+      </div>
       </div>
     </div>
 
@@ -708,9 +1326,9 @@
 
 <!-- STICKY CTA BAR -->
 <div class="cta-bar">
-  <a class="btn-wa" href="https://wa.me/6583638499?text=Hi%2C%20I%20want%20to%20order%20from%20Discounter%20SG!">
-    💬 WhatsApp to Order
-  </a>
+  <button onclick="openCart()" style="flex:1;background:#dc2626;color:#fff;border:none;border-radius:12px;padding:13px 16px;font-size:0.95rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;">
+    🛒 Cart <span id="cartCountMobile" style="display:none;background:#fff;color:#dc2626;border-radius:20px;padding:1px 8px;font-size:0.8rem;font-weight:800;min-width:22px;text-align:center;">0</span>
+  </button>
   <a class="btn-call" href="tel:+6583638499">📞</a>
 </div>
 
@@ -748,7 +1366,326 @@
       card.classList.toggle('hidden', cat !== 'all' && card.dataset.cat !== cat);
     });
   }
+
+  // ── Cart state ────────────────────────────────
+  let cart = JSON.parse(localStorage.getItem('dsg_cart') || '[]');
+
+  function saveCart() {
+    localStorage.setItem('dsg_cart', JSON.stringify(cart));
+    updateCartCount();
+  }
+
+  function updateCartCount() {
+    const total = cart.reduce((s, i) => s + i.qty, 0);
+    document.querySelectorAll('#cartCount').forEach(el => {
+      el.textContent = total;
+      el.style.display = total > 0 ? 'inline-flex' : 'none';
+    });
+    document.querySelectorAll('#cartCountMobile').forEach(el => {
+      el.textContent = total;
+      el.style.display = total > 0 ? 'inline-flex' : 'none';
+    });
+  }
+
+  function addToCart(id, name, price) {
+    const existing = cart.find(i => i.id === id);
+    if (existing) {
+      existing.qty++;
+    } else {
+      cart.push({ id, name, price, qty: 1 });
+    }
+    saveCart();
+    // Show qty row, hide add btn
+    const qtyRow = document.getElementById('qty-' + id);
+    const addBtn = document.getElementById('add-btn-' + id);
+    if (qtyRow) qtyRow.style.display = 'flex';
+    if (addBtn) addBtn.style.display = 'none';
+    const item = cart.find(i => i.id === id);
+    if (qtyRow) qtyRow.querySelector('.qty-num').textContent = item.qty;
+  }
+
+  function changeQty(id, delta) {
+    const idx = cart.findIndex(i => i.id === id);
+    if (idx === -1) return;
+    cart[idx].qty += delta;
+    if (cart[idx].qty <= 0) {
+      cart.splice(idx, 1);
+      const qtyRow = document.getElementById('qty-' + id);
+      const addBtn = document.getElementById('add-btn-' + id);
+      if (qtyRow) qtyRow.style.display = 'none';
+      if (addBtn) addBtn.style.display = 'inline-flex';
+    } else {
+      const qtyRow = document.getElementById('qty-' + id);
+      if (qtyRow) qtyRow.querySelector('.qty-num').textContent = cart[idx].qty;
+    }
+    saveCart();
+    renderCartItems();
+  }
+
+  function cartTotal() {
+    return cart.reduce((s, i) => s + i.price * i.qty, 0);
+  }
+
+  function renderCartItems() {
+    const container = document.getElementById('cartItems');
+    if (!container) return;
+    if (cart.length === 0) {
+      container.innerHTML = '<p style="text-align:center;color:#9ca3af;padding:32px 0;">Your cart is empty</p>';
+      document.getElementById('cartCheckoutBtn').style.display = 'none';
+      document.getElementById('cartTotalRow').style.display = 'none';
+      return;
+    }
+    document.getElementById('cartCheckoutBtn').style.display = 'block';
+    document.getElementById('cartTotalRow').style.display = 'flex';
+    document.getElementById('cartTotalAmt').textContent = 'S$' + cartTotal().toFixed(2);
+    container.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <div class="cart-item-info">
+          <p class="cart-item-name">${item.name}</p>
+          <p class="cart-item-price">S$${(item.price * item.qty).toFixed(2)} (${item.qty} × S$${item.price.toFixed(2)})</p>
+        </div>
+        <div class="cart-item-qty">
+          <button class="qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
+          <span>${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function openCart() {
+    renderCartItems();
+    document.getElementById('cartOverlay').style.display = 'block';
+    document.getElementById('cartDrawer').style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCart() {
+    document.getElementById('cartOverlay').style.display = 'none';
+    document.getElementById('cartDrawer').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  function openCheckout() {
+    closeCart();
+    document.getElementById('checkoutModal').style.display = 'flex';
+    document.getElementById('checkoutForm').style.display = 'block';
+    document.getElementById('qrScreen').style.display = 'none';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeCheckout() {
+    document.getElementById('checkoutModal').style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  // ── PayNow EMV QR ─────────────────────────────
+  function tlv(tag, value) {
+    const len = String(value).length;
+    return String(tag).padStart(2,'0') + String(len).padStart(2,'0') + value;
+  }
+
+  function crc16(data) {
+    let crc = 0xFFFF;
+    for (let i = 0; i < data.length; i++) {
+      crc ^= data.charCodeAt(i) << 8;
+      for (let j = 0; j < 8; j++) {
+        crc = (crc & 0x8000) ? ((crc << 1) ^ 0x1021) : (crc << 1);
+      }
+    }
+    return (crc & 0xFFFF).toString(16).toUpperCase().padStart(4, '0');
+  }
+
+  function buildPayNowQRString(mobile, amount, reference, merchantName) {
+    const proxyType = tlv('00', '0'); // 0 = mobile
+    const proxyValue = tlv('01', '+65' + mobile);
+    const editable = tlv('02', '0'); // amount fixed
+    const payNowData = tlv('26', tlv('00', 'SG.PAYNOW') + proxyType + proxyValue + editable);
+    const amountStr = amount.toFixed(2);
+    const refData = tlv('62', tlv('05', reference.substring(0, 25)));
+    const withoutCRC =
+      tlv('00', '01') +
+      tlv('01', '12') +
+      payNowData +
+      tlv('52', '0000') +
+      tlv('53', '702') +
+      tlv('54', amountStr) +
+      tlv('58', 'SG') +
+      tlv('59', (merchantName || 'DISCOUNTERSG').substring(0, 25)) +
+      tlv('60', 'Singapore') +
+      refData +
+      '6304';
+    return withoutCRC + crc16(withoutCRC);
+  }
+
+  function extractLastName(fullName) {
+    const parts = fullName.trim().split(/\s+/);
+    return parts[parts.length - 1].toUpperCase().replace(/[^A-Z0-9]/g, '');
+  }
+
+  function buildPaymentRef(name, postal) {
+    const last = extractLastName(name);
+    return (last + ' ' + postal).substring(0, 25).toUpperCase();
+  }
+
+  function generateQR() {
+    const name = document.getElementById('co-name').value.trim();
+    const phone = document.getElementById('co-phone').value.trim();
+    const postal = document.getElementById('co-postal').value.trim();
+
+    if (!name) { alert('Please enter your full name'); return; }
+    if (!phone) { alert('Please enter your phone number'); return; }
+    if (!/^\d{6}$/.test(postal)) { alert('Please enter a valid 6-digit postal code'); return; }
+    if (cart.length === 0) { alert('Your cart is empty'); return; }
+
+    const total = cartTotal();
+    const payRef = buildPaymentRef(name, postal);
+    const qrString = buildPayNowQRString('83638499', total, payRef, 'Discounter SG');
+    const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=280x280&ecc=M&data=' + encodeURIComponent(qrString);
+
+    document.getElementById('qrPayRef').textContent = payRef;
+    document.getElementById('qrTotal').textContent = 'S$' + total.toFixed(2);
+    document.getElementById('qrImg').src = qrUrl;
+    const totalStr = 'S$' + total.toFixed(2);
+    const inlineTotal = document.getElementById('qrTotalInline');
+    const inlineRef = document.getElementById('qrPayRefInline');
+    if (inlineTotal) inlineTotal.textContent = totalStr;
+    if (inlineRef) inlineRef.textContent = payRef;
+
+    // Build WhatsApp order summary
+    const itemList = cart.map(i => `• ${i.name} ×${i.qty} = S$${(i.price*i.qty).toFixed(2)}`).join('\n');
+    const waMsg = `Hi Discounter SG! Here's my order:\n\n${itemList}\n\nTotal: S$${total.toFixed(2)}\nPayRef: ${payRef}\nPhone: ${phone}\n\nI've completed PayNow payment.`;
+    document.getElementById('confirmWaBtn').href = 'https://wa.me/6583638499?text=' + encodeURIComponent(waMsg);
+
+    document.getElementById('checkoutForm').style.display = 'none';
+    document.getElementById('qrScreen').style.display = 'block';
+  }
+
+  function copyPayRef() {
+    const ref = document.getElementById('qrPayRef').textContent;
+    navigator.clipboard.writeText(ref).then(() => {
+      const btn = document.getElementById('copyRefBtn');
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => btn.textContent = '📋 Copy', 2000);
+    });
+  }
+
+  function confirmPaid() {
+    document.getElementById('confirmWaBtn').click();
+    cart = [];
+    saveCart();
+    // Reset all product cards
+    document.querySelectorAll('.qty-row').forEach(el => el.style.display = 'none');
+    document.querySelectorAll('.add-btn').forEach(el => el.style.display = 'inline-flex');
+    closeCheckout();
+    alert('Order sent! We\'ll confirm once payment is verified. Check WhatsApp for updates.');
+  }
+
+  // Restore cart UI on page load
+  window.addEventListener('DOMContentLoaded', () => {
+    updateCartCount();
+    cart.forEach(item => {
+      const qtyRow = document.getElementById('qty-' + item.id);
+      const addBtn = document.getElementById('add-btn-' + item.id);
+      if (qtyRow) { qtyRow.style.display = 'flex'; qtyRow.querySelector('.qty-num').textContent = item.qty; }
+      if (addBtn) addBtn.style.display = 'none';
+    });
+  });
 </script>
+
+<!-- CART OVERLAY -->
+<div id="cartOverlay" onclick="closeCart()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:1000;"></div>
+
+<!-- CART DRAWER -->
+<div id="cartDrawer" style="display:none;position:fixed;bottom:0;left:0;right:0;max-width:520px;margin:0 auto;background:#fff;border-radius:20px 20px 0 0;z-index:1001;flex-direction:column;max-height:80vh;">
+  <div style="padding:16px 20px 8px;border-bottom:1px solid #f3f4f6;display:flex;justify-content:space-between;align-items:center;">
+    <h2 style="font-size:1.1rem;font-weight:700;margin:0;">🛒 Your Cart</h2>
+    <button onclick="closeCart()" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:#6b7280;">✕</button>
+  </div>
+  <div id="cartItems" style="flex:1;overflow-y:auto;padding:12px 16px;"></div>
+  <div id="cartTotalRow" style="display:none;padding:12px 20px;border-top:1px solid #f3f4f6;justify-content:space-between;align-items:center;">
+    <span style="font-weight:600;">Total</span>
+    <span id="cartTotalAmt" style="font-size:1.2rem;font-weight:700;color:#dc2626;"></span>
+  </div>
+  <div style="padding:12px 16px 20px;">
+    <button id="cartCheckoutBtn" onclick="openCheckout()" style="display:none;width:100%;background:#dc2626;color:#fff;border:none;border-radius:12px;padding:14px;font-size:1rem;font-weight:700;cursor:pointer;">
+      Checkout & Pay via PayNow
+    </button>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div id="checkoutModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1100;align-items:flex-end;justify-content:center;">
+  <div style="background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;padding-bottom:24px;">
+    <div style="padding:16px 20px 8px;border-bottom:1px solid #f3f4f6;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;z-index:1;">
+      <h2 style="font-size:1.1rem;font-weight:700;margin:0;">Checkout</h2>
+      <button onclick="closeCheckout()" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:#6b7280;">✕</button>
+    </div>
+
+    <!-- FORM -->
+    <div id="checkoutForm" style="padding:16px 20px;space-y:12px;">
+      <p style="font-size:0.8rem;color:#6b7280;margin:0 0 16px;">Your details are used to generate the PayNow payment reference.</p>
+
+      <div style="margin-bottom:14px;">
+        <label style="font-size:0.78rem;font-weight:600;color:#374151;display:block;margin-bottom:6px;">👤 Full Name</label>
+        <input id="co-name" type="text" placeholder="e.g. Ravi Kumar" style="width:100%;padding:10px 12px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:0.95rem;box-sizing:border-box;" />
+        <p style="font-size:0.72rem;color:#9ca3af;margin:4px 0 0;">Your last name will be used as payment reference</p>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <label style="font-size:0.78rem;font-weight:600;color:#374151;display:block;margin-bottom:6px;">📍 Postal Code</label>
+        <input id="co-postal" type="tel" inputmode="numeric" maxlength="6" placeholder="e.g. 238859" style="width:100%;padding:10px 12px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:0.95rem;box-sizing:border-box;" oninput="this.value=this.value.replace(/\D/g,'')" />
+        <p style="font-size:0.72rem;color:#9ca3af;margin:4px 0 0;">Your Singapore postal code — used as payment reference</p>
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <label style="font-size:0.78rem;font-weight:600;color:#374151;display:block;margin-bottom:6px;">📱 WhatsApp / Phone</label>
+        <input id="co-phone" type="tel" placeholder="+65 9123 4567" style="width:100%;padding:10px 12px;border:1.5px solid #e5e7eb;border-radius:10px;font-size:0.95rem;box-sizing:border-box;" />
+        <p style="font-size:0.72rem;color:#9ca3af;margin:4px 0 0;">We'll send order updates here</p>
+      </div>
+
+      <button onclick="generateQR()" style="width:100%;background:#dc2626;color:#fff;border:none;border-radius:12px;padding:14px;font-size:1rem;font-weight:700;cursor:pointer;">
+        Get PayNow QR →
+      </button>
+    </div>
+
+    <!-- QR SCREEN -->
+    <div id="qrScreen" style="display:none;padding:16px 20px;text-align:center;">
+      <p style="font-size:0.85rem;color:#374151;margin:0 0 12px;font-weight:500;">Scan with DBS, OCBC, UOB, GrabPay, PayLah! etc.</p>
+
+      <img id="qrImg" src="" alt="PayNow QR" style="width:240px;height:240px;border-radius:12px;border:1px solid #e5e7eb;" />
+
+      <div style="background:#fef2f2;border-radius:14px;padding:12px;margin:14px 0 0;">
+        <p style="font-size:0.75rem;color:#6b7280;margin:0 0 4px;">Amount to Pay</p>
+        <p id="qrTotal" style="font-size:1.8rem;font-weight:800;color:#dc2626;margin:0;"></p>
+        <p style="font-size:0.72rem;color:#9ca3af;margin:4px 0 0;">PayNow to +65 8363 8499</p>
+      </div>
+
+      <div style="background:#fffbeb;border:1.5px solid #fbbf24;border-radius:14px;padding:12px;margin:12px 0;">
+        <p style="font-size:0.75rem;font-weight:700;color:#92400e;margin:0 0 6px;">⚠ Payment Reference / Remarks</p>
+        <p id="qrPayRef" style="font-family:monospace;font-size:1.1rem;font-weight:700;color:#78350f;letter-spacing:1px;margin:0 0 8px;"></p>
+        <button id="copyRefBtn" onclick="copyPayRef()" style="background:#fbbf24;border:none;border-radius:8px;padding:6px 14px;font-size:0.8rem;font-weight:600;cursor:pointer;">📋 Copy</button>
+        <p style="font-size:0.72rem;color:#b45309;margin:8px 0 0;">Enter this exactly in the "Remarks" field when paying</p>
+      </div>
+
+      <div style="background:#f9fafb;border-radius:12px;padding:12px;text-align:left;margin-bottom:14px;">
+        <p style="font-size:0.82rem;font-weight:600;margin:0 0 8px;">How to pay:</p>
+        <ol style="font-size:0.82rem;color:#6b7280;padding-left:18px;margin:0;line-height:1.8;">
+          <li>Open your banking app</li>
+          <li>Scan the QR above, OR transfer to <strong>+65 8363 8499</strong></li>
+          <li>Enter amount: <strong id="qrTotalInline"></strong></li>
+          <li>In <strong>Remarks</strong>, enter: <strong id="qrPayRefInline" style="font-family:monospace;"></strong></li>
+          <li>Complete the transfer</li>
+        </ol>
+      </div>
+
+      <a id="confirmWaBtn" href="#" target="_blank" onclick="setTimeout(confirmPaid,500)" style="display:block;width:100%;background:#16a34a;color:#fff;border:none;border-radius:12px;padding:14px;font-size:1rem;font-weight:700;cursor:pointer;text-decoration:none;box-sizing:border-box;text-align:center;">
+        ✅ I've Paid — Confirm on WhatsApp
+      </a>
+      <p style="font-size:0.72rem;color:#9ca3af;margin-top:10px;">This opens WhatsApp with your order summary pre-filled</p>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
