@@ -2,6 +2,7 @@ import { createClient } from '@/lib/supabase/server'
 import { formatSGD, getWeekCutoffDate } from '@/lib/utils/order'
 import { ShoppingBag, Package, DollarSign, Users } from 'lucide-react'
 import { Card } from '@/components/ui/card'
+import SeedButton from './SeedButton'
 
 export default async function AdminDashboard() {
   const supabase = await createClient()
@@ -52,6 +53,13 @@ export default async function AdminDashboard() {
           <p className="text-sm font-semibold text-orange-800">
             ⚠️ {lowStockCount} product{lowStockCount > 1 ? 's' : ''} running low on stock (≤5 units)
           </p>
+        </Card>
+      )}
+
+      {products.length === 0 && (
+        <Card className="p-6 border-dashed border-2 border-gray-200 text-center space-y-3">
+          <p className="text-gray-500 text-sm">No products yet. Load the 30 starter SKUs to get started.</p>
+          <SeedButton />
         </Card>
       )}
     </div>
