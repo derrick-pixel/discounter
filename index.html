@@ -197,12 +197,17 @@
     .card-img {
       aspect-ratio: 1;
       background: #f9fafb;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 52px;
       position: relative;
+      overflow: hidden;
     }
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 10px;
+      transition: transform .2s;
+    }
+    .card:hover .card-img img { transform: scale(1.04); }
     .discount-badge {
       position: absolute;
       top: 8px;
@@ -393,7 +398,7 @@
 
     <!-- BEVERAGES -->
     <div class="card" data-cat="beverages">
-      <div class="card-img">🥤<span class="discount-badge">-63%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/888/800/207/6009/front_en.9.400.jpg" alt="Coca-Cola Classic" loading="lazy"><span class="discount-badge">-63%</span></div>
       <div class="card-body">
         <p class="card-name">Coca-Cola Classic 24 × 320ml</p>
         <span class="expiry warning">⚠ Exp Sep 2025</span>
@@ -402,7 +407,7 @@
     </div>
 
     <div class="card" data-cat="beverages">
-      <div class="card-img">🐂<span class="discount-badge">-64%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/900/249/021/5408/front_sv.19.400.jpg" alt="Red Bull Energy Drink" loading="lazy"><span class="discount-badge">-64%</span></div>
       <div class="card-body">
         <p class="card-name">Red Bull Energy Drink 4 × 250ml</p>
         <span class="expiry critical">🔴 Exp Aug 2025</span>
@@ -411,7 +416,7 @@
     </div>
 
     <div class="card" data-cat="beverages">
-      <div class="card-img">🍵<span class="discount-badge">-62%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/888/819/617/3324/front_en.16.400.jpg" alt="Pokka Green Tea" loading="lazy"><span class="discount-badge">-62%</span></div>
       <div class="card-body">
         <p class="card-name">Pokka Green Tea 24 × 300ml</p>
         <span class="expiry warning">⚠ Exp Oct 2025</span>
@@ -420,7 +425,7 @@
     </div>
 
     <div class="card" data-cat="beverages">
-      <div class="card-img">☕<span class="discount-badge">-64%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/955/600/121/7233/front_en.4.400.jpg" alt="Milo 3-in-1" loading="lazy"><span class="discount-badge">-64%</span></div>
       <div class="card-body">
         <p class="card-name">Milo 3-in-1 Instant Drink 15 sachets</p>
         <span class="expiry warning">⚠ Exp Nov 2025</span>
@@ -429,7 +434,7 @@
     </div>
 
     <div class="card" data-cat="beverages">
-      <div class="card-img">🍵<span class="discount-badge">-60%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/890/105/200/0722/front_en.3.400.jpg" alt="Tata Tea Premium" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
         <p class="card-name">Tata Tea Premium Leaf Tea 250g</p>
         <span class="expiry ok">✓ Exp Dec 2025</span>
@@ -438,7 +443,7 @@
     </div>
 
     <div class="card" data-cat="beverages">
-      <div class="card-img">⚡<span class="discount-badge">-63%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/888/820/080/1717/front_en.3.400.jpg" alt="100Plus Isotonic" loading="lazy"><span class="discount-badge">-63%</span></div>
       <div class="card-body">
         <p class="card-name">100Plus Isotonic Drink 24 × 325ml</p>
         <span class="expiry warning">⚠ Exp Sep 2025</span>
@@ -448,7 +453,7 @@
 
     <!-- INSTANT NOODLES -->
     <div class="card" data-cat="instant_noodles">
-      <div class="card-img">🍜<span class="discount-badge">-60%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/899/496/300/3876/front_en.3.400.jpg" alt="Indomie Mi Goreng" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
         <p class="card-name">Indomie Mi Goreng Fried Noodles 5 × 80g</p>
         <span class="expiry critical">🔴 Exp Jul 2025</span>
@@ -457,7 +462,7 @@
     </div>
 
     <div class="card" data-cat="instant_noodles">
-      <div class="card-img">🍜<span class="discount-badge">-61%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/955/600/112/9963/front_en.4.400.jpg" alt="Maggi Curry Noodles" loading="lazy"><span class="discount-badge">-61%</span></div>
       <div class="card-body">
         <p class="card-name">Maggi 2-Min Noodles Curry 5 × 79g</p>
         <span class="expiry critical">🔴 Exp Aug 2025</span>
@@ -466,7 +471,7 @@
     </div>
 
     <div class="card" data-cat="instant_noodles">
-      <div class="card-img">🍜<span class="discount-badge">-61%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/955/600/113/7722/front_en.58.400.jpg" alt="Maggi Chicken Noodles" loading="lazy"><span class="discount-badge">-61%</span></div>
       <div class="card-body">
         <p class="card-name">Maggi 2-Min Noodles Chicken 5 × 77g</p>
         <span class="expiry critical">🔴 Exp Jul 2025</span>
@@ -475,7 +480,7 @@
     </div>
 
     <div class="card" data-cat="instant_noodles">
-      <div class="card-img">🍜<span class="discount-badge">-59%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/489/787/863/0011/front_fr.12.400.jpg" alt="Nissin Cup Noodles Seafood" loading="lazy"><span class="discount-badge">-59%</span></div>
       <div class="card-body">
         <p class="card-name">Nissin Cup Noodles Seafood 6 × 75g</p>
         <span class="expiry critical">🔴 Exp Sep 2025</span>
@@ -485,7 +490,7 @@
 
     <!-- CANNED GOODS -->
     <div class="card" data-cat="canned_goods">
-      <div class="card-img">🥫<span class="discount-badge">-60%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/000/009/550/0539/front_en.4.400.jpg" alt="Ayam Brand Sardines" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
         <p class="card-name">Ayam Brand Sardines in Tomato Sauce 215g</p>
         <span class="expiry ok">✓ Exp Dec 2025</span>
@@ -494,7 +499,7 @@
     </div>
 
     <div class="card" data-cat="canned_goods">
-      <div class="card-img">🥫<span class="discount-badge">-60%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/955/604/161/3927/front_en.19.400.jpg" alt="Ayam Brand Tuna" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
         <p class="card-name">Ayam Brand Tuna Chunks in Water 185g</p>
         <span class="expiry ok">✓ Exp Nov 2025</span>
@@ -503,7 +508,7 @@
     </div>
 
     <div class="card" data-cat="canned_goods">
-      <div class="card-img">🥫<span class="discount-badge">-59%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/480/016/344/3043/front_en.12.400.jpg" alt="Ligo Sardines" loading="lazy"><span class="discount-badge">-59%</span></div>
       <div class="card-body">
         <p class="card-name">Ligo Sardines in Corn Oil 155g</p>
         <span class="expiry warning">⚠ Exp Oct 2025</span>
@@ -512,7 +517,7 @@
     </div>
 
     <div class="card" data-cat="canned_goods">
-      <div class="card-img">🥫<span class="discount-badge">-60%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/500/015/707/1644/front_en.19.400.jpg" alt="Baked Beans" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
         <p class="card-name">FairPrice Baked Beans in Tomato Sauce 420g</p>
         <span class="expiry ok">✓ Exp Jan 2026</span>
@@ -522,7 +527,7 @@
 
     <!-- RICE & GRAINS -->
     <div class="card" data-cat="rice_grains">
-      <div class="card-img">🍚<span class="discount-badge">-60%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/885/018/740/0030/front_fr.16.400.jpg" alt="Royal Umbrella Thai Rice" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
         <p class="card-name">Royal Umbrella Thai Jasmine Rice 5kg</p>
         <span class="expiry ok">✓ Exp Dec 2025</span>
@@ -531,7 +536,7 @@
     </div>
 
     <div class="card" data-cat="rice_grains">
-      <div class="card-img">🍚<span class="discount-badge">-61%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/069/022/510/1134/front_en.16.400.jpg" alt="India Gate Basmati Rice" loading="lazy"><span class="discount-badge">-61%</span></div>
       <div class="card-body">
         <p class="card-name">India Gate Basmati Rice Classic 2kg</p>
         <span class="expiry ok">✓ Exp Nov 2025</span>
@@ -541,7 +546,7 @@
 
     <!-- COOKING ESSENTIALS -->
     <div class="card" data-cat="cooking_essentials">
-      <div class="card-img">🍳<span class="discount-badge">-61%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/888/802/512/3629/front_en.3.400.jpg" alt="Knife Brand Cooking Oil" loading="lazy"><span class="discount-badge">-61%</span></div>
       <div class="card-body">
         <p class="card-name">Knife Brand Cooking Oil 2L</p>
         <span class="expiry warning">⚠ Exp Oct 2025</span>
@@ -550,7 +555,7 @@
     </div>
 
     <div class="card" data-cat="cooking_essentials">
-      <div class="card-img">🍶<span class="discount-badge">-60%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/955/600/160/2107/front_en.5.400.jpg" alt="Maggi Oyster Sauce" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
         <p class="card-name">Maggi Oyster Sauce 510g</p>
         <span class="expiry ok">✓ Exp Dec 2025</span>
@@ -559,7 +564,7 @@
     </div>
 
     <div class="card" data-cat="cooking_essentials">
-      <div class="card-img">🧂<span class="discount-badge">-60%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/500/018/416/1028/front_en.54.400.jpg" alt="Knorr Chicken Stock Cubes" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
         <p class="card-name">Knorr Chicken Stock Cubes 60g (6 cubes)</p>
         <span class="expiry ok">✓ Exp Nov 2025</span>
@@ -568,7 +573,7 @@
     </div>
 
     <div class="card" data-cat="cooking_essentials">
-      <div class="card-img">🌶️<span class="discount-badge">-61%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/955/606/500/0987/front_en.3.400.jpg" alt="Curry Powder" loading="lazy"><span class="discount-badge">-61%</span></div>
       <div class="card-body">
         <p class="card-name">FairPrice Instant Curry Powder 250g</p>
         <span class="expiry warning">⚠ Exp Sep 2025</span>
@@ -578,7 +583,7 @@
 
     <!-- PERSONAL CARE -->
     <div class="card" data-cat="personal_care">
-      <div class="card-img">🧴<span class="discount-badge">-60%</span></div>
+      <div class="card-img"><img src="https://images.openbeautyfacts.org/images/products/899/999/903/0391/front_en.3.400.jpg" alt="Lifebuoy Body Wash" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
         <p class="card-name">Lifebuoy Antibacterial Body Wash 900ml</p>
         <span class="expiry critical">🔴 Exp Aug 2025</span>
@@ -587,7 +592,7 @@
     </div>
 
     <div class="card" data-cat="personal_care">
-      <div class="card-img">🧴<span class="discount-badge">-60%</span></div>
+      <div class="card-img"><img src="https://images.openbeautyfacts.org/images/products/871/716/374/2839/front_en.4.400.jpg" alt="Dove Body Wash" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
         <p class="card-name">Dove Deeply Nourishing Body Wash 1L</p>
         <span class="expiry critical">🔴 Exp Jul 2025</span>
@@ -596,7 +601,7 @@
     </div>
 
     <div class="card" data-cat="personal_care">
-      <div class="card-img">🚿<span class="discount-badge">-60%</span></div>
+      <div class="card-img"><img src="https://images.openbeautyfacts.org/images/products/885/193/235/5025/front_en.3.400.jpg" alt="Sunsilk Shampoo" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
         <p class="card-name">Sunsilk Smooth & Manageable Shampoo 650ml</p>
         <span class="expiry warning">⚠ Exp Sep 2025</span>
@@ -605,7 +610,7 @@
     </div>
 
     <div class="card" data-cat="personal_care">
-      <div class="card-img">🚿<span class="discount-badge">-60%</span></div>
+      <div class="card-img"><img src="https://images.openbeautyfacts.org/images/products/005/610/002/0561/front_en.5.400.jpg" alt="Head & Shoulders Shampoo" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
         <p class="card-name">Head & Shoulders Anti-Dandruff Shampoo 650ml</p>
         <span class="expiry critical">🔴 Exp Aug 2025</span>
@@ -614,7 +619,7 @@
     </div>
 
     <div class="card" data-cat="personal_care">
-      <div class="card-img">✨<span class="discount-badge">-60%</span></div>
+      <div class="card-img"><img src="https://images.openbeautyfacts.org/images/products/890/910/603/0534/front_en.5.400.jpg" alt="Glow & Lovely Face Cream" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
         <p class="card-name">Glow & Lovely Advanced Multivitamin Face Cream 50g</p>
         <span class="expiry critical">🔴 Exp Jul 2025</span>
@@ -623,7 +628,7 @@
     </div>
 
     <div class="card" data-cat="personal_care">
-      <div class="card-img">🧴<span class="discount-badge">-60%</span></div>
+      <div class="card-img"><img src="https://images.openbeautyfacts.org/images/products/871/256/148/0369/front_fr.12.400.jpg" alt="Vaseline Body Lotion" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
         <p class="card-name">Vaseline Intensive Care Body Lotion 400ml</p>
         <span class="expiry warning">⚠ Exp Oct 2025</span>
@@ -632,7 +637,7 @@
     </div>
 
     <div class="card" data-cat="personal_care">
-      <div class="card-img">🦷<span class="discount-badge">-60%</span></div>
+      <div class="card-img"><img src="https://images.openbeautyfacts.org/images/products/005/800/031/3194/front_en.13.400.jpg" alt="Colgate Toothpaste" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
         <p class="card-name">Colgate Anticavity Toothpaste 225g</p>
         <span class="expiry ok">✓ Exp Jan 2026</span>
@@ -642,7 +647,7 @@
 
     <!-- SNACKS -->
     <div class="card" data-cat="snacks">
-      <div class="card-img">🍟<span class="discount-badge">-61%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/896/400/009/0596/front_en.6.400.jpg" alt="Lay's Classic Chips" loading="lazy"><span class="discount-badge">-61%</span></div>
       <div class="card-body">
         <p class="card-name">Lay's Classic Potato Chips 170g</p>
         <span class="expiry critical">🔴 Exp Aug 2025</span>
@@ -651,7 +656,7 @@
     </div>
 
     <div class="card" data-cat="snacks">
-      <div class="card-img">🍪<span class="discount-badge">-60%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/890/106/309/2280/front_en.4.400.jpg" alt="Britannia Good Day Cookies" loading="lazy"><span class="discount-badge">-60%</span></div>
       <div class="card-body">
         <p class="card-name">Britannia Good Day Butter Cookies 216g</p>
         <span class="expiry warning">⚠ Exp Oct 2025</span>
@@ -661,7 +666,7 @@
 
     <!-- DAIRY -->
     <div class="card" data-cat="dairy">
-      <div class="card-img">🥛<span class="discount-badge">-61%</span></div>
+      <div class="card-img"><img src="https://images.openfoodfacts.org/images/products/955/616/605/8191/front_en.13.400.jpg" alt="Dutch Lady Full Cream Milk" loading="lazy"><span class="discount-badge">-61%</span></div>
       <div class="card-body">
         <p class="card-name">Dutch Lady Full Cream UHT Milk 1L</p>
         <span class="expiry warning">⚠ Exp Sep 2025</span>
