@@ -47,7 +47,7 @@ export default async function AdminOrdersPage() {
       {unpaidCount > 0 && (
         <Card className="p-3 bg-orange-50 border-orange-200">
           <p className="text-sm text-orange-800">
-            💡 Check your PayNow (+65 9847 9776) for incoming transfers. Match by the payment reference shown below.
+            💡 Check your PayNow (+65 8363 8499) for incoming transfers. Match by the payment reference shown below.
           </p>
         </Card>
       )}

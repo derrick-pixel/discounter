@@ -4,7 +4,7 @@ import { createAdminClient } from '@/lib/supabase/admin'
 import { getWeekCutoffDate } from '@/lib/utils/order'
 import { buildPayNowQRString, buildPaymentRef } from '@/lib/utils/paynow'
 
-const PAYNOW_MOBILE = '98479776'
+const PAYNOW_MOBILE = '83638499'
 
 export async function POST(req: NextRequest) {
   try {

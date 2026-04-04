@@ -13,7 +13,7 @@ import { useCartStore } from '@/lib/store/cart'
 import { formatSGD } from '@/lib/utils/order'
 import { toast } from 'sonner'
 
-const PAYNOW_DISPLAY = '+65 9847 9776'
+const PAYNOW_DISPLAY = '+65 8363 8499'
 
 export default function CheckoutPage() {
   const router = useRouter()
