@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Discounter SG
+
+Grocery e-commerce app offering up to 80% off FMCG products with weekly delivery to foreign worker dormitories in Singapore. Customers browse near-expiry discounted groceries, order via cart, and pay through PayNow QR.
+
+## Tech Stack
+
+- **Framework:** Next.js 16 + React 19 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS 4 + ShadCN/UI
+- **Database:** Supabase (Postgres + Auth)
+- **State:** Zustand (persisted cart)
+- **Payments:** PayNow QR (EMVCo spec)
+
+## Features
+
+- **Product catalog** with category filtering, discount badges, and expiry urgency indicators
+- **Shopping cart** (persisted in localStorage via Zustand) with stock-aware quantity controls
+- **Checkout** with PayNow QR code generation for instant mobile payment
+- **Order tracking** with status updates (pending → paid → processing → delivered)
+- **Weekly cutoff system** — orders batch every Sunday 23:59 SGT for next-week delivery
+- **Admin panel** — manage products, view/fulfill orders, track deliveries, seed demo data
+- **Customer accounts** — phone-based auth, order history
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+# Install dependencies
+npm install
+
+# Set environment variables (see below)
+cp .env.local.example .env.local
+
+# Run development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment Variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Description |
+|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase anonymous/public key |
+| `SUPABASE_SERVICE_ROLE_KEY` | Supabase service role key (admin operations) |
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+src/
+├── app/
+│   ├── (store)/          # Customer-facing pages
+│   │   ├── page.tsx      # Product catalog (homepage)
+│   │   ├── cart/         # Shopping cart
+│   │   ├── checkout/     # Checkout + PayNow QR
+│   │   └── account/      # Order history
+│   ├── admin/            # Admin panel
+│   │   ├── products/     # Product CRUD
+│   │   ├── orders/       # Order management
+│   │   └── delivery/     # Delivery tracking
+│   └── api/
+│       ├── orders/       # Order creation + status API
+│       └── admin/        # Seed products endpoint
+├── components/
+│   ├── ui/               # ShadCN/UI primitives
+│   ├── products/         # ProductCard, CategoryFilter
+│   └── layout/           # Navbar, CutoffBanner
+└── lib/
+    ├── store/cart.ts     # Zustand cart store
+    ├── supabase/         # Supabase client (browser, server, admin)
+    ├── utils/order.ts    # Cutoff dates, formatting, expiry logic
+    ├── utils/paynow.ts   # PayNow QR string builder (EMVCo)
+    └── types.ts          # TypeScript interfaces
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Command | Description |
+|---|---|
+| `npm run dev` | Start dev server |
+| `npm run build` | Production build |
+| `npm run start` | Start production server |
+| `npm run lint` | Run ESLint |
