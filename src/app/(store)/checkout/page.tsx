@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Phone, User, CheckCircle2, MapPin, Copy, Check } from 'lucide-react'
@@ -29,6 +29,12 @@ export default function CheckoutPage() {
   const [qrDataUrl, setQrDataUrl] = useState<string | null>(null)
 
   const total = totalAmount()
+
+  useEffect(() => {
+    if (items.length === 0 && paymentStep === 'form') {
+      router.push('/cart')
+    }
+  }, [items.length, paymentStep, router])
 
   async function handleSubmitOrder() {
     if (!name.trim()) { toast.error('Please enter your name'); return }
@@ -79,11 +85,6 @@ export default function CheckoutPage() {
   function handlePaymentDone() {
     setPaymentStep('confirmed')
     clearCart()
-  }
-
-  if (items.length === 0 && paymentStep === 'form') {
-    router.push('/cart')
-    return null
   }
 
   if (paymentStep === 'confirmed') {

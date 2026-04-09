@@ -1,5 +1,6 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import { createAdminClient } from '@/lib/supabase/admin'
+import { createClient } from '@/lib/supabase/server'
 
 // 30 starter SKUs — popular with Indian/Bangladeshi foreign workers in Singapore
 // Prices based on NTUC FairPrice / Sheng Siong retail, Apr 2025
@@ -52,6 +53,21 @@ const SEED_PRODUCTS = [
 ]
 
 export async function POST() {
+  // Auth check: only admins can seed products
+  const serverSupabase = await createClient()
+  const { data: { user } } = await serverSupabase.auth.getUser()
+  if (!user) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+  }
+  const { data: profile } = await serverSupabase
+    .from('users')
+    .select('role')
+    .eq('id', user.id)
+    .single()
+  if (profile?.role !== 'admin') {
+    return NextResponse.json({ error: 'Forbidden' }, { status: 403 })
+  }
+
   const supabase = createAdminClient()
 
   // Check if already seeded

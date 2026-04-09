@@ -552,14 +552,14 @@
       inset: 0;
       z-index: 400;
       display: none;
-      align-items: flex-end;
+      align-items: flex-start;
       justify-content: center;
     }
     @media (min-width: 640px) { .modal { align-items: center; } }
     .modal.open { display: flex; }
     .modal-box {
       background: #fff;
-      border-radius: 20px 20px 0 0;
+      border-radius: 0 0 20px 20px;
       width: 100%;
       max-width: 480px;
       padding: 24px 20px;
@@ -1595,10 +1595,12 @@
   }
 
   function buildPayNowQRString(mobile, amount, reference, merchantName) {
-    const proxyType = tlv('00', '0'); // 0 = mobile
-    const proxyValue = tlv('01', '+65' + mobile);
-    const editable = tlv('02', '0'); // amount fixed
-    const payNowData = tlv('26', tlv('00', 'SG.PAYNOW') + proxyType + proxyValue + editable);
+    const payNowData = tlv('26',
+      tlv('00', 'SG.PAYNOW') +   // GUID
+      tlv('01', '0') +            // proxy type: 0 = mobile
+      tlv('02', '+65' + mobile) + // proxy value
+      tlv('03', '1')              // editable: 1 = fixed amount (non-editable)
+    );
     const amountStr = amount.toFixed(2);
     const refData = tlv('62', tlv('05', reference.substring(0, 25)));
     const withoutCRC =
@@ -1794,8 +1796,8 @@
 </div>
 
 <!-- CHECKOUT MODAL -->
-<div id="checkoutModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1100;align-items:flex-end;justify-content:center;">
-  <div style="background:#fff;border-radius:20px 20px 0 0;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;padding-bottom:24px;">
+<div id="checkoutModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:1100;align-items:flex-start;justify-content:center;">
+  <div style="background:#fff;border-radius:0 0 20px 20px;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;padding-bottom:24px;">
     <div style="padding:16px 20px 8px;border-bottom:1px solid #f3f4f6;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:#fff;z-index:1;">
       <h2 style="font-size:1.1rem;font-weight:700;margin:0;">Checkout</h2>
       <button onclick="closeCheckout()" style="background:none;border:none;font-size:1.4rem;cursor:pointer;color:#6b7280;">✕</button>

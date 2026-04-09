@@ -14,7 +14,26 @@
       "Bash(git add:*)",
       "Bash(git push:*)",
       "WebSearch",
-      "Bash(git commit -m ':*)"
+      "Bash(git commit -m ':*)",
+      "Bash(git checkout:*)",
+      "Bash(git reset:*)",
+      "Bash(git commit:*)",
+      "Bash(cp /Users/derrickteo/discounter/docs/index.html /tmp/index.html)",
+      "Bash(git branch:*)",
+      "Bash(git rm:*)",
+      "Bash(cp /tmp/index.html ./index.html)",
+      "Bash(gh api:*)",
+      "WebFetch(domain:world.openfoodfacts.org)",
+      "WebFetch(domain:world.openbeautyfacts.org)",
+      "WebFetch(domain:in.openfoodfacts.org)",
+      "Bash(python3:*)",
+      "WebFetch(domain:elitez.asia)",
+      "Bash(pip3 install:*)",
+      "Bash(node:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx next:*)",
+      "Bash(NODE_OPTIONS='--stack-trace-limit=50' npx next build)",
+      "Bash(curl -s \"https://api.qrserver.com/v1/create-qr-code/?size=280x280&ecc=M&data=00020101021226380009SG.PAYNOW010100211+658363849903010520400005303702540510.005802SG5913Discounter+SG6009Singapore62160512KUMAR+238859630461B6\" -o /tmp/test_qr.png)"
     ]
   }
 }

@@ -48,10 +48,9 @@ export function buildPayNowQRString(params: PayNowQRParams): string {
   // Tag 26 — PayNow merchant account info
   const paynowInfo = [
     tlv('00', 'SG.PAYNOW'),
-    tlv('01', '1'),      // proxy type: 1 = mobile number
+    tlv('01', '0'),      // proxy type: 0 = mobile number
     tlv('02', mobile),
-    tlv('03', '1'),      // amount is editable (user sees pre-filled amount)
-    tlv('04', ''),       // no expiry
+    tlv('03', '1'),      // editable: 1 = fixed amount (non-editable)
   ].join('')
 
   // Tag 62 — additional data (payment reference shown in banking app)
