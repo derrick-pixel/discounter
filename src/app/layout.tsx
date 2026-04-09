@@ -14,6 +14,18 @@ export const metadata: Metadata = {
     statusBarStyle: 'default',
     title: 'Discounter SG',
   },
+  openGraph: {
+    type: 'website',
+    url: 'https://derrick-pixel.github.io/discounter/',
+    title: 'Discounter SG — Up to 80% Off FMCG',
+    description: 'Best deals on groceries, snacks, beverages and daily essentials. Weekly delivery to Singapore dormitories.',
+    images: [{ url: '/og-image.png', width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Discounter SG — Up to 80% Off FMCG',
+    images: ['/og-image.png'],
+  },
 }
 
 export const viewport: Viewport = {
