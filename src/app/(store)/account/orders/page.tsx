@@ -1,13 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, Package } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Input } from '@/components/ui/input'
 import { Button, buttonVariants } from '@/components/ui/button'
-import { createClient } from '@/lib/supabase/client'
 import { formatSGD } from '@/lib/utils/order'
 import { format } from 'date-fns'
 import { toast } from 'sonner'
@@ -41,32 +40,25 @@ export default function MyOrdersPage() {
     if (!phone.trim()) return
     setLoading(true)
     try {
-      const supabase = createClient()
-      const { data: user } = await supabase
-        .from('users')
-        .select('id')
-        .eq('phone', phone.trim())
-        .single()
-
-      if (!user) {
-        toast.error('No account found for this number')
+      const res = await fetch('/api/orders/lookup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ phone: phone.trim() }),
+      })
+      const data = await res.json()
+      if (!res.ok) {
+        toast.error(data.error ?? 'Lookup failed')
         setOrders([])
         setSearched(true)
         return
       }
-
-      const { data } = await supabase
-        .from('orders')
-        .select(`
-          id, status, payment_status, total_amount, created_at,
-          dormitory:dormitories(name),
-          order_items(quantity, unit_price, product:products(name))
-        `)
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false })
-
-      setOrders((data as unknown as Order[]) ?? [])
+      if (data.orders.length === 0) {
+        toast.error('No orders found for this number')
+      }
+      setOrders(data.orders)
       setSearched(true)
+    } catch {
+      toast.error('Something went wrong')
     } finally {
       setLoading(false)
     }

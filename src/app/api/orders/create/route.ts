@@ -157,10 +157,18 @@ export async function POST(req: NextRequest) {
 
     // Decrement stock atomically
     for (const item of items) {
-      await supabase.rpc('decrement_stock', {
+      const { error: stockError } = await supabase.rpc('decrement_stock', {
         product_id: item.productId,
         qty: item.quantity,
       })
+      if (stockError) {
+        // Stock was depleted between validation and decrement — cancel the order
+        await supabase.from('orders').update({ status: 'cancelled' }).eq('id', order.id)
+        return NextResponse.json(
+          { error: `Insufficient stock. Please refresh and try again.` },
+          { status: 409 }
+        )
+      }
     }
 
     // Generate PayNow QR code

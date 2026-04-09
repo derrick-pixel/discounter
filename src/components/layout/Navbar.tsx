@@ -5,7 +5,7 @@ import { ShoppingCart, User, Tag } from 'lucide-react'
 import { useCartStore } from '@/lib/store/cart'
 
 export default function Navbar() {
-  const totalItems = useCartStore((s) => s.totalItems)()
+  const totalItems = useCartStore((s) => s.items.reduce((sum, i) => sum + i.quantity, 0))
 
   return (
     <header className="sticky top-0 z-50 bg-red-600 text-white shadow-md">

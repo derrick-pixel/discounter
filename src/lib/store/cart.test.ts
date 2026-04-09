@@ -100,6 +100,21 @@ describe('Cart Store', () => {
 
       expect(useCartStore.getState().items).toHaveLength(0)
     })
+
+    it('clamps quantity to stock_qty', () => {
+      useCartStore.getState().addItem(mockProduct({ stock_qty: 5 }))
+      useCartStore.getState().updateQuantity('prod-1', 99)
+
+      expect(useCartStore.getState().items[0].quantity).toBe(5)
+    })
+
+    it('does nothing for non-existent product', () => {
+      useCartStore.getState().addItem(mockProduct())
+      useCartStore.getState().updateQuantity('non-existent', 5)
+
+      expect(useCartStore.getState().items).toHaveLength(1)
+      expect(useCartStore.getState().items[0].quantity).toBe(1)
+    })
   })
 
   describe('totalItems', () => {

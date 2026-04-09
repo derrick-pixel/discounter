@@ -45,9 +45,12 @@ export const useCartStore = create<CartStore>()(
           get().removeItem(productId)
           return
         }
+        const item = get().items.find((i) => i.product.id === productId)
+        if (!item) return
+        const clampedQty = Math.min(quantity, item.product.stock_qty)
         set({
           items: get().items.map((i) =>
-            i.product.id === productId ? { ...i, quantity } : i
+            i.product.id === productId ? { ...i, quantity: clampedQty } : i
           ),
         })
       },

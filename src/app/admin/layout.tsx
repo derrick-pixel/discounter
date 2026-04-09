@@ -1,7 +1,18 @@
+import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { LayoutDashboard, Package, ShoppingBag, Truck, Tag } from 'lucide-react'
+import { createClient } from '@/lib/supabase/server'
 
-export default function AdminLayout({ children }: { children: React.ReactNode }) {
+export default async function AdminLayout({ children }: { children: React.ReactNode }) {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+  if (!user) redirect('/')
+  const { data: profile } = await supabase
+    .from('users')
+    .select('role')
+    .eq('id', user.id)
+    .single()
+  if (profile?.role !== 'admin') redirect('/')
   return (
     <div className="min-h-screen bg-gray-100 flex">
       {/* Sidebar */}
