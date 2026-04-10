@@ -4,14 +4,9 @@ import { Category } from '@/lib/types'
 
 const CATEGORIES: { value: Category | 'all'; label: string; emoji: string }[] = [
   { value: 'all', label: 'All', emoji: '🛒' },
-  { value: 'beverages', label: 'Drinks', emoji: '🥤' },
-  { value: 'instant_noodles', label: 'Noodles', emoji: '🍜' },
-  { value: 'snacks', label: 'Snacks', emoji: '🍟' },
-  { value: 'canned_goods', label: 'Canned', emoji: '🥫' },
-  { value: 'rice_grains', label: 'Rice', emoji: '🍚' },
-  { value: 'cooking_essentials', label: 'Cooking', emoji: '🍳' },
-  { value: 'personal_care', label: 'Care', emoji: '🧴' },
-  { value: 'dairy', label: 'Dairy', emoji: '🥛' },
+  { value: 'pain_relief', label: 'Pain Relief', emoji: '💊' },
+  { value: 'oral_care', label: 'Oral Care', emoji: '🪥' },
+  { value: 'denture_care', label: 'Denture Care', emoji: '🦷' },
 ]
 
 interface Props {

@@ -1,4 +1,5 @@
 export type Category =
+  // Legacy grocery categories — retained so the OOS page can still query legacy SKUs.
   | 'beverages'
   | 'snacks'
   | 'instant_noodles'
@@ -8,6 +9,10 @@ export type Category =
   | 'personal_care'
   | 'dairy'
   | 'other'
+  // GSK catalogue categories
+  | 'pain_relief'
+  | 'oral_care'
+  | 'denture_care'
 
 export interface Product {
   id: string

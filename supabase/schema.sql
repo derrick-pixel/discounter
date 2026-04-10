@@ -40,8 +40,11 @@ create table products (
   description text,
   image_url text,
   category text not null check (category in (
+    -- Legacy grocery categories (kept so the OOS page can still query the old SKUs)
     'beverages', 'snacks', 'instant_noodles', 'canned_goods',
-    'rice_grains', 'cooking_essentials', 'personal_care', 'dairy', 'other'
+    'rice_grains', 'cooking_essentials', 'personal_care', 'dairy', 'other',
+    -- GSK / pharma catalogue categories
+    'pain_relief', 'oral_care', 'denture_care'
   )),
   original_price numeric(10,2) not null,
   sale_price numeric(10,2) not null,
