@@ -13,6 +13,11 @@ export type Category =
   | 'pain_relief'
   | 'oral_care'
   | 'denture_care'
+  | 'vitamins'
+  | 'supplements'
+  | 'cold_flu'
+  | 'skincare'
+  | 'digestive'
 
 export interface Product {
   id: string

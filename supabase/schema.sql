@@ -44,7 +44,8 @@ create table products (
     'beverages', 'snacks', 'instant_noodles', 'canned_goods',
     'rice_grains', 'cooking_essentials', 'personal_care', 'dairy', 'other',
     -- GSK / pharma catalogue categories
-    'pain_relief', 'oral_care', 'denture_care'
+    'pain_relief', 'oral_care', 'denture_care',
+    'vitamins', 'supplements', 'cold_flu', 'skincare', 'digestive'
   )),
   original_price numeric(10,2) not null,
   sale_price numeric(10,2) not null,

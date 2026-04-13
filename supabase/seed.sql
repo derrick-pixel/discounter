@@ -117,3 +117,91 @@ insert into products (name, description, category, original_price, sale_price, d
 ('Polident Denture Adhesive Cream Flavour Free (60g)', 'All-day hold denture adhesive with no added flavour — for sensitive palates. 60g tube.', 'denture_care', 14.00, 12.60, 10, '2027-12-31', 1000, '/products/72039381.png', true),
 ('Polident Max Hold & Seal Denture Adhesive (40g)', 'Extra-strong hold and seal formula — locks out food particles all day. 40g tube.', 'denture_care', 11.90, 10.71, 10, '2027-12-31', 1000, '/products/72037841.png', true),
 ('Polident Max Hold & Seal Denture Adhesive (70g)', 'Extra-strong hold and seal formula in a larger value tube. Locks out food particles all day. 70g tube.', 'denture_care', 18.90, 17.01, 10, '2027-12-31', 1000, '/products/72037827.png', true);
+
+
+-- ── GSK CATALOGUE SKUs (pages 6-16, 10% off RSP, in stock) ────
+-- Continuation of the pages 1-5 set above.
+insert into products (name, description, category, original_price, sale_price, discount_pct, expiry_date, stock_qty, image_url, is_active) values
+
+-- Sensodyne (oral_care)
+('Sensodyne Complete Protection Cool Mint Toothpaste (100g)', 'Daily protection toothpaste for sensitive teeth — 10 benefits in one, with cool mint flavour. 100g tube.', 'oral_care', 10.20, 9.18, 10, '2027-12-31', 1000, '/products/72049689.png', true),
+('Sensodyne Complete Protection Fresh Breath Toothpaste (100g)', 'Daily sensitivity toothpaste with extra-fresh breath formula. 100g tube.', 'oral_care', 10.20, 9.18, 10, '2027-12-31', 1000, '/products/72049719.png', true),
+('Sensodyne Repair & Protect Toothpaste (100g)', 'Clinically proven to repair sensitive areas and build a protective layer. 100g tube.', 'oral_care', 10.20, 9.18, 10, '2027-12-31', 1000, '/products/72046328.png', true),
+('Sensodyne Repair & Protect Extra Fresh Toothpaste (100g)', 'Repairs sensitive teeth with an extra-fresh mint flavour. 100g tube.', 'oral_care', 10.20, 9.18, 10, '2027-12-31', 1000, '/products/72047486.png', true),
+('Sensodyne Repair & Protect Whitening Toothpaste (100g)', 'Repairs sensitive teeth while gently whitening daily. 100g tube.', 'oral_care', 10.20, 9.18, 10, '2027-12-31', 1000, '/products/72047011.png', true),
+('Sensodyne Rapid Relief Original Toothpaste (100g)', 'Rapid-acting sensitivity relief in 60 seconds — original mint flavour. 100g tube.', 'oral_care', 10.20, 9.18, 10, '2027-12-31', 1000, '/products/72049503.png', true),
+('Sensodyne Rapid Relief Whitening Toothpaste (100g)', 'Rapid 60-second sensitivity relief with daily whitening action. 100g tube.', 'oral_care', 10.20, 9.18, 10, '2027-12-31', 1000, '/products/72049527.png', true),
+('Sensodyne Sensitivity & Gum Toothpaste (100g)', 'Twin-action toothpaste for sensitive teeth and healthier gums. 100g tube.', 'oral_care', 10.20, 9.18, 10, '2027-12-31', 1000, '/products/72042341.png', true),
+('Sensodyne Sensitivity & Gum Whitening Toothpaste (100g)', 'Daily care for sensitive teeth and gums — with whitening. 100g tube.', 'oral_care', 10.20, 9.18, 10, '2027-12-31', 1000, '/products/72042365.png', true),
+('Sensodyne Sensitivity & Gum Extra Fresh Toothpaste (100g)', 'Sensitive teeth and gum protection with an extra-fresh flavour. 100g tube.', 'oral_care', 10.20, 9.18, 10, '2027-12-31', 1000, '/products/72043357.png', true),
+('Sensodyne Sensitivity & Gum Enamel Mint Toothpaste (100g)', 'Protects sensitive teeth, gums and enamel with a cooling mint flavour. 100g tube.', 'oral_care', 11.00, 9.90, 10, '2027-12-31', 1000, '/products/72047636.png', true),
+('Sensodyne Clinical White Stain Protector Toothpaste (100g)', 'Clinically proven to whiten and protect sensitive teeth from stains. 100g tube.', 'oral_care', 13.00, 11.70, 10, '2027-12-31', 1000, '/products/72041908.png', true),
+('Sensodyne Clinical White Enamel Strengthening Toothpaste (100g)', 'Clinical whitening formula that also strengthens enamel. 100g tube.', 'oral_care', 13.00, 11.70, 10, '2027-12-31', 1000, '/products/72042196.png', true),
+('Sensodyne Clinical White Stain Protector Travel Toothpaste (20g)', 'Travel-size Sensodyne Clinical White stain-protection toothpaste. 20g tube.', 'oral_care', 2.95, 2.66, 10, '2027-12-31', 1000, '/products/72041878.png', true),
+('Sensodyne Fresh Mint Toothpaste Twin Pack (2 x 100g)', 'Twin-pack of Sensodyne Fresh Mint daily sensitivity toothpaste. 2 x 100g tubes.', 'oral_care', 6.05, 5.45, 10, '2027-12-31', 1000, '/products/72046134.png', true),
+('Sensodyne Gum Care Toothpaste Twin Pack (2 x 100g)', 'Twin-pack of Sensodyne Gum Care — sensitivity and gum health. 2 x 100g tubes.', 'oral_care', 6.05, 5.45, 10, '2027-12-31', 1000, '/products/72046141.png', true),
+('Sensodyne Gentle Whitening Toothpaste Twin Pack (2 x 100g)', 'Twin-pack of Sensodyne Gentle Whitening — sensitivity with daily whitening. 2 x 100g tubes.', 'oral_care', 6.05, 5.45, 10, '2027-12-31', 1000, '/products/72044672.png', true),
+('Sensodyne Multi Care Toothpaste Twin Pack (2 x 100g)', 'Twin-pack of Sensodyne Multi Care — all-round sensitivity protection. 2 x 100g tubes.', 'oral_care', 6.05, 5.45, 10, '2027-12-31', 1000, '/products/72043508.png', true),
+('Sensodyne Fresh Mint Toothpaste (75g)', 'Daily fresh-mint toothpaste for sensitive teeth. 75g tube.', 'oral_care', 4.00, 3.60, 10, '2027-12-31', 1000, '/products/72042976.png', true),
+('Sensodyne Multicare Toothbrush Soft (3-pack)', 'Soft-bristle toothbrush designed for sensitive teeth and gums. Pack of 3.', 'oral_care', 4.20, 3.78, 10, '2027-12-31', 1000, '/products/72042860.png', true),
+('Sensodyne Complete Protection Toothbrush Soft (Buy 2 Free 1)', 'Soft-bristle sensitivity toothbrush — buy 2 get 1 free promotional pack.', 'oral_care', 14.00, 12.60, 10, '2027-12-31', 1000, '/products/72041191.png', true),
+('Sensodyne Sensitivity & Gum Toothbrush Soft (Buy 2 Free 1)', 'Soft-bristle toothbrush for sensitive teeth and gums — buy 2 get 1 free promotional pack.', 'oral_care', 14.00, 12.60, 10, '2027-12-31', 1000, '/products/72043249.png', true),
+
+-- Scott's (supplements)
+('Scott''s Cod Liver Oil Capsules (500 capsules)', 'Classic cod liver oil capsules — omega-3, vitamin A and D for daily immunity. 500 capsules per bottle.', 'supplements', 36.10, 32.49, 10, '2027-12-31', 1000, '/products/74016028.png', true),
+('Scott''s Vitamin C Mix Berries Pastilles (100g)', 'Chewable vitamin C pastilles in mixed-berries flavour — daily immunity support. 100g bottle.', 'supplements', 11.95, 10.76, 10, '2027-12-31', 1000, '/products/74011049.png', true),
+('Scott''s Vitamin C Orange Pastilles (100g)', 'Chewable vitamin C pastilles in orange flavour — daily immunity support. 100g bottle.', 'supplements', 11.95, 10.76, 10, '2027-12-31', 1000, '/products/74011629.png', true),
+('Scott''s Vitamin C Black Currant Pastilles (100g)', 'Chewable vitamin C pastilles in black currant flavour — daily immunity support. 100g bottle.', 'supplements', 11.95, 10.76, 10, '2027-12-31', 1000, '/products/74016103.png', true),
+('Scott''s Vitamin C Mix Berries Zipper Pack (30g)', 'Resealable snack pack of mixed-berries vitamin C pastilles. 30g pouch.', 'supplements', 4.15, 3.74, 10, '2027-12-31', 1000, '/products/74011360.png', true),
+('Scott''s Vitamin C Orange Zipper Pack (30g)', 'Resealable snack pack of orange vitamin C pastilles. 30g pouch.', 'supplements', 4.15, 3.74, 10, '2027-12-31', 1000, '/products/74011643.png', true),
+('Scott''s Vitamin C Black Currant Zipper Pack (30g)', 'Resealable snack pack of black currant vitamin C pastilles. 30g pouch.', 'supplements', 4.15, 3.74, 10, '2027-12-31', 1000, '/products/74016097.png', true),
+('Scott''s DHA Gummies Black Currant (60 gummies)', 'Soft chewable DHA gummies for kids — brain-boosting omega-3 with a black-currant twist. 60 gummies per bottle.', 'supplements', 24.50, 22.05, 10, '2027-12-31', 1000, '/products/74013005.png', true),
+('Scott''s DHA Gummies Orange (60 gummies)', 'Soft chewable DHA gummies for kids — brain-boosting omega-3 in orange flavour. 60 gummies per bottle.', 'supplements', 24.50, 22.05, 10, '2027-12-31', 1000, '/products/74012305.png', true),
+('Scott''s DHA Gummies Strawberry (60 gummies)', 'Soft chewable DHA gummies for kids — brain-boosting omega-3 in strawberry flavour. 60 gummies per bottle.', 'supplements', 24.50, 22.05, 10, '2027-12-31', 1000, '/products/74012381.png', true),
+('Scott''s DHA Gummies Black Currant Zipper Pack (15 gummies)', 'Resealable snack pack of kids'' DHA gummies in black-currant flavour. 15 gummies.', 'supplements', 6.50, 5.85, 10, '2027-12-31', 1000, '/products/74012978.png', true),
+('Scott''s DHA Gummies Orange Zipper Pack (15 gummies)', 'Resealable snack pack of kids'' DHA gummies in orange flavour. 15 gummies.', 'supplements', 6.50, 5.85, 10, '2027-12-31', 1000, '/products/74012329.png', true),
+('Scott''s DHA Gummies Strawberry Zipper Pack (15 gummies)', 'Resealable snack pack of kids'' DHA gummies in strawberry flavour. 15 gummies.', 'supplements', 6.50, 5.85, 10, '2027-12-31', 1000, '/products/74012404.png', true),
+
+-- Eno (digestive)
+('Eno Fruit Salt Plain (100g)', 'Fast-acting antacid fruit salt — relieves heartburn, indigestion and acidity. 100g bottle.', 'digestive', 6.50, 5.85, 10, '2027-12-31', 1000, '/products/74020017.png', true),
+('Eno Fruit Salt Orange (100g)', 'Fast-acting antacid fruit salt with a refreshing orange flavour. 100g bottle.', 'digestive', 6.50, 5.85, 10, '2027-12-31', 1000, '/products/74020055.png', true),
+('Eno Fruit Salt Lemon (100g)', 'Fast-acting antacid fruit salt with a zesty lemon flavour. 100g bottle.', 'digestive', 6.50, 5.85, 10, '2027-12-31', 1000, '/products/74020031.png', true),
+('Eno Fruit Salt Lemon Sachets (48 x 4.3g)', 'Portable single-dose sachets of lemon-flavoured antacid fruit salt. Box of 48.', 'digestive', 49.20, 44.28, 10, '2027-12-31', 1000, '/products/74000086.png', true),
+
+-- Drapolene (skincare)
+('Drapolene Cream (55g)', 'Gentle antiseptic cream that prevents and treats nappy rash. Suitable for babies. 55g tube.', 'skincare', 12.20, 10.98, 10, '2027-12-31', 1000, '/products/75024230.png', true),
+
+-- Otrivin (cold_flu)
+('Otrivin Nasal Congestion Drops 0.05% (10ml)', 'Decongestant nasal drops for babies and children — fast relief from blocked nose. 10ml bottle.', 'cold_flu', 12.75, 11.48, 10, '2027-12-31', 1000, '/products/76025847.png', true),
+
+-- Centrum (vitamins)
+('Centrum Advance Multivitamin (60 tablets)', 'Complete daily multivitamin for adults with 24 nutrients for energy, immunity and metabolism. 60 tablets.', 'vitamins', 38.95, 35.06, 10, '2027-12-31', 1000, '/products/78010231.png', true),
+('Centrum Silver Multivitamin 50+ (60 tablets)', 'Multivitamin tailored for adults 50+ — heart, brain and eye support. 60 tablets.', 'vitamins', 44.50, 40.05, 10, '2027-12-31', 1000, '/products/78010255.png', true),
+('Centrum Advance Multivitamin (100 tablets)', 'Complete daily multivitamin for adults — 24 nutrients for energy and immunity. Value pack of 100 tablets.', 'vitamins', 59.50, 53.55, 10, '2027-12-31', 1000, '/products/78010013.png', true),
+('Centrum Silver Multivitamin 50+ (100 tablets)', 'Multivitamin for adults 50+ — heart, brain and eye support. Value pack of 100 tablets.', 'vitamins', 67.95, 61.16, 10, '2027-12-31', 1000, '/products/78010456.png', true),
+('Centrum for Men Multivitamin (60 tablets)', 'Men''s multivitamin with nutrients for energy, muscle function and heart health. 60 tablets.', 'vitamins', 45.50, 40.95, 10, '2027-12-31', 1000, '/products/78010517.png', true),
+('Centrum for Women Multivitamin (60 tablets)', 'Women''s multivitamin with iron, calcium, B vitamins and more. 60 tablets.', 'vitamins', 45.50, 40.95, 10, '2027-12-31', 1000, '/products/78010531.png', true),
+('Centrum for Men 50+ Multivitamin (60 tablets)', 'Multivitamin for men 50+ with nutrients supporting heart, muscle and prostate health. 60 tablets.', 'vitamins', 49.95, 44.96, 10, '2027-12-31', 1000, '/products/78011385.png', true),
+('Centrum for Women 50+ Multivitamin (60 tablets)', 'Multivitamin for women 50+ with nutrients for heart, bone and metabolism support. 60 tablets.', 'vitamins', 49.95, 44.96, 10, '2027-12-31', 1000, '/products/78011415.png', true),
+('Centrum for Men Multivitamin (100 tablets)', 'Men''s daily multivitamin — value pack of 100 tablets.', 'vitamins', 68.50, 61.65, 10, '2027-12-31', 1000, '/products/78012443.png', true),
+('Centrum for Women Multivitamin (100 tablets)', 'Women''s daily multivitamin — value pack of 100 tablets.', 'vitamins', 68.50, 61.65, 10, '2027-12-31', 1000, '/products/78012436.png', true),
+('Centrum for Men 50+ Multivitamin (100 tablets)', 'Multivitamin for men 50+ — value pack of 100 tablets.', 'vitamins', 76.50, 68.85, 10, '2027-12-31', 1000, '/products/78012948.png', true),
+('Centrum for Women 50+ Multivitamin (100 tablets)', 'Multivitamin for women 50+ — value pack of 100 tablets.', 'vitamins', 76.50, 68.85, 10, '2027-12-31', 1000, '/products/78012931.png', true),
+
+-- Caltrate (supplements)
+('Caltrate 600+D3 Triple Action Bone & Muscle Health (60 tablets)', 'Calcium 600mg + vitamin D3 500IU + magnesium + zinc — triple action for bones and muscles. 60 tablets.', 'supplements', 37.95, 34.16, 10, '2027-12-31', 1000, '/products/78020821.png', true),
+('Caltrate 600+D3 Dual Action Bone & Muscle Health (60 tablets)', 'Calcium 600mg + vitamin D3 500IU — dual action for stronger bones and muscles. 60 tablets.', 'supplements', 33.95, 30.56, 10, '2027-12-31', 1000, '/products/78020814.png', true),
+('Caltrate 600+D3 Triple Action Bone & Muscle Health (100 tablets)', 'Calcium + vitamin D3 + magnesium + zinc — triple action. Value pack of 100 tablets.', 'supplements', 57.95, 52.16, 10, '2027-12-31', 1000, '/products/78021392.png', true),
+('Caltrate 600+D3 Dual Action Bone & Muscle Health (100 tablets)', 'Calcium 600mg + vitamin D3 500IU for bone and muscle health. Value pack of 100 tablets.', 'supplements', 51.50, 46.35, 10, '2027-12-31', 1000, '/products/78021385.png', true),
+('Caltrate 600+D 1000IU Bone & Muscle Health (60 tablets)', 'Calcium 600mg + high-strength vitamin D 1000IU for bones and muscles. 60 tablets.', 'supplements', 43.50, 39.15, 10, '2027-12-31', 1000, '/products/78021637.png', true),
+('Caltrate 1000IU Vitamin D Bone & Muscle Health (60 softgels)', 'High-strength vitamin D 1000IU softgels — supports calcium absorption and muscle function. 60 softgels.', 'supplements', 21.50, 19.35, 10, '2027-12-31', 1000, '/products/78023600.png', true),
+('Caltrate Joint Health UC-II Collagen (30 tablets)', 'UC-II undenatured type II collagen for joint comfort and flexibility. 30 tablets.', 'supplements', 50.50, 45.45, 10, '2027-12-31', 1000, '/products/78023479.png', true),
+('Caltrate Joint Health UC-II Collagen (90 tablets)', 'UC-II collagen for joint comfort — 3-month supply. 90 tablets.', 'supplements', 136.50, 122.85, 10, '2027-12-31', 1000, '/products/78023334.png', true),
+('Caltrate Joint Speed Hops UC-II Collagen (42 tablets)', 'Fast-acting joint support with UC-II collagen plus hops extract. 42 tablets.', 'supplements', 67.95, 61.16, 10, '2027-12-31', 1000, '/products/78023654.png', true),
+
+-- Robitussin (cold_flu)
+('Robitussin EX Expectorant Syrup (100ml)', 'Expectorant cough syrup that helps loosen and clear chesty coughs. 100ml bottle.', 'cold_flu', 12.95, 11.66, 10, '2027-12-31', 1000, '/products/78031117.png', true),
+
+-- Imedeen (supplements)
+('Imedeen Time Perfection (60 tablets)', 'Beauty-from-within supplement with BioMarine Complex — supports skin firmness and radiance. 60 tablets.', 'supplements', 206.95, 186.26, 10, '2027-12-31', 1000, '/products/78055818.png', true),
+('Imedeen Prime Renewal (120 tablets)', 'Advanced skin supplement for women 50+ — supports density, firmness and smoothness. 120 tablets.', 'supplements', 259.95, 233.96, 10, '2027-12-31', 1000, '/products/78051253.png', true);

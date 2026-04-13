@@ -5,8 +5,13 @@ import { Category } from '@/lib/types'
 const CATEGORIES: { value: Category | 'all'; label: string; emoji: string }[] = [
   { value: 'all', label: 'All', emoji: '🛒' },
   { value: 'pain_relief', label: 'Pain Relief', emoji: '💊' },
+  { value: 'cold_flu', label: 'Cold & Flu', emoji: '🤧' },
+  { value: 'vitamins', label: 'Vitamins', emoji: '🧬' },
+  { value: 'supplements', label: 'Supplements', emoji: '🫀' },
+  { value: 'digestive', label: 'Digestive', emoji: '🌿' },
   { value: 'oral_care', label: 'Oral Care', emoji: '🪥' },
   { value: 'denture_care', label: 'Denture Care', emoji: '🦷' },
+  { value: 'skincare', label: 'Skincare', emoji: '🧴' },
 ]
 
 interface Props {
